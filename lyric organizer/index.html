@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lyrics-organizer</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../link.css">
+    <a href="../index.html" class="l">Home</a>
+</head>
+<body>
+    <br><br><br><br>
+    <input type="text" name="Title" style="width: 80%;" placeholder="title" value="your-title"><br><br>
+    <textarea name="lyrics" id="" cols="30" rows="10" placeholder="your lyrics"></textarea><br>
+    <label for="paragraphSpacing">Paragraph Spacing:</label>
+    <input type="number" id="paragraphSpacing" name="paragraphSpacing" min="0.1" step="0.1" value="1.2">
+    <button id="viewButton">View</button>
+    <button id="downloadButton">Download HTML</button><button id="download-audio" onclick="audiodownload()">audio</button>
+    <input type="file" id="audioFile" name="audioFile"><br><br>
+    <div class="output" id="output"></div>
+<br><br>
+<video src=""></video>
+<br><br><br><br>
+    <script src="functions.js"></script>
+    <script src="download.js"></script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!-- index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bubble Chart Editor</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        canvas {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        div {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <a href="../index.html" class="l">Home</a>
+    <link rel="stylesheet" href="../link.css">
+<div>
+    <label for="labelInput">Labels:</label>
+    <input type="text" id="labelInput" placeholder="Enter labels, comma-separated">
+</div>
+<div>
+    <label for="xDataInput">X-Axis Data:</label>
+    <input type="text" id="xDataInput" placeholder="Enter X-axis data values, comma-separated">
+</div>
+<div>
+    <label for="yDataInput">Y-Axis Data:</label>
+    <input type="text" id="yDataInput" placeholder="Enter Y-axis data values, comma-separated">
+</div>
+<div>
+    <label for="sizeInput">Bubble Sizes:</label>
+    <input type="text" id="sizeInput" placeholder="Enter bubble sizes, comma-separated">
+</div>
+<div>
+    <label for="bubbleColor">Bubble Color:</label>
+    <input type="color" id="bubbleColor" value="#4CAF50">
+</div>
+<button onclick="updateChart()">Update Bubble Chart</button>
+<button onclick="generateRandomColors()">Generate Random Colors</button>
+<button onclick="downloadAsHTML()">Download as HTML</button>
+<button onclick="downloadAsBubbleGraph()">Download as .bubble-grap</button>
+<input type="file" accept=".bubble-grap" onchange="importBubbleGraphFile()">
+<canvas id="myBubbleChart" width="600" height="400"></canvas>
+
+<script src="Bubble-Chart.js"></script><script src="/function.js"></script>
+</body>
+</html>
