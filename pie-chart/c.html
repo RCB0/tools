@@ -1,0 +1,50 @@
+<!-- index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pie</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <a href="../index.html" class="l">Home</a>
+    <link rel="stylesheet" href="../link.css">
+<div>
+    <label for="categoryInput">Categories:</label>
+    <input type="text" id="categoryInput" placeholder="Enter categories, comma-separated">
+</div>
+<div>
+    <label for="dataInput">Data:</label>
+    <input type="text" id="dataInput" placeholder="Enter data values, comma-separated">
+</div>
+<div>
+    <label for="colorInput">Background Colors:</label>
+    <div id="colorInputs"></div>
+</div>
+</div>
+<button onclick="updateChart()">Update Chart</button><br>
+<button onclick="downloadAsHTML()">Download as HTML</button><br>
+<button onclick="downloadAsPie()">download As Pie</button><br>
+<input type="file" accept=".pie" onchange="importPieFile()" /><br>
+<button id="openDialogBtn">download</button><br>
+<a href="index.html">back</a><br>
+<br>
+<dialog id="myDialog" class="dialog">
+    <div>
+        <button onclick="downloadAsHTML()">Download as HTML</button><br><br>
+        <button onclick="downloadAsImage()">Download as Image</button><br><br>
+        <button onclick="downloadAsPDF()">Download as PDF</button><br><br><br>
+        <button id="closeDialogBtn">Close</button>
+    </div>
+    </dialog><br><br>
+
+<canvas id="myPieChart"></canvas>
+
+<script src="c.js"></script>
+<script src="/other/function.js"></script>
+
+</body>
+</html>

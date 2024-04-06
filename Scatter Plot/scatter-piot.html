@@ -1,0 +1,55 @@
+<!-- index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scatter Plot Editor</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        canvas {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        div {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <a href="../index.html" class="l">Home</a>
+    <link rel="stylesheet" href="../link.css">
+<div>
+    <label for="labelInput">Labels:</label>
+    <input type="text" id="labelInput" placeholder="Enter labels, comma-separated">
+</div>
+<div>
+    <label for="xDataInput">X-Axis Data:</label>
+    <input type="text" id="xDataInput" placeholder="Enter X-axis data values, comma-separated">
+</div>
+<div>
+    <label for="yDataInput">Y-Axis Data:</label>
+    <input type="text" id="yDataInput" placeholder="Enter Y-axis data values, comma-separated">
+</div>
+<div>
+    <label for="scatterColor">Scatter Color:</label>
+    <input type="color" id="scatterColor" value="#FF5733">
+</div>
+<button onclick="updateChart()">Update Scatter Plot</button>
+<button onclick="generateRandomColors()">Generate Random Colors</button>
+<button onclick="downloadAsHTML()">Download as HTML</button>
+<button onclick="downloadAsScatterGraph()">Download as .scatter-grap</button>
+<input type="file" accept=".scatter-grap" onchange="importScatterGraphFile()">
+<canvas id="myScatterChart" width="600" height="400"></canvas>
+
+<script src="scatter-piot.js"></script><script src="/function.js"></script>
+</body>
+</html>

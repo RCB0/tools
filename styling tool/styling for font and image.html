@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Styling Tool</title>
+    <link rel="stylesheet" href="styles.css"> 
+    <style>
+        .draggable {
+            cursor: move;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="styling-options">
+            <input type="text" draggable="true" id="drag" ondragstart="drag(event)" class="draggable"><br><br>
+            <button draggable="true" id="drag" ondragstart="drag(event)">Button</button>
+            <button id="createSquareBtn" onclick="createShape('square')">Square</button>
+            <button id="createTriangleBtn" onclick="createShape('triangle')">Triangle</button>
+            <button id="createCircleBtn" onclick="createShape('circle')">Circle</button>
+            <button class="copy-code" id="copyCodeButton">Copy All Code</button>
+            <button id="editButton">Edit</button>
+        </div>
+
+        <div class="editing-area" id="content" ondrop="drop(event)" ondragover="allowDrop(event)">
+          
+        </div>
+    </div>
+
+    <div class="link">
+        <a href="../index.html">home</a>
+    </div>
+    <script src="dragables.js"></script>
+    <script src="shapes.js"></script>
+  
+</body>
+</html>
+<!--
+i want to drag and drop the tags have "drag" id-->

@@ -1,0 +1,17 @@
+/* Default Theme */
+body {
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Dark Theme */
+body.dark {
+    background-color: #222;
+    color: #fff;
+}
+
+/* Light Theme */
+body.light {
+    background-color: #fff;
+    color: #333;
+}

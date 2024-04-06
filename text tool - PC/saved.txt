@@ -1,0 +1,176 @@
+   
+   
+   
+   
+   
+           
+           font-family: 'Comic Sans MS', cursive, sans-serif;
+           font-family: 'Times New Roman', Times, serif;
+           font-family: 'Arial Narrow', Arial, sans-serif;
+           font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+           font-family: Georgia, serif;
+           font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
+           font-family: 'Rockwell', serif;
+           font-family: 'Baskerville', 'Baskerville Old Face', Garamond, serif;
+           font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
+           font-family: 'Rockwell', serif;
+           font-family: 'Baskerville', 'Baskerville Old Face', Garamond, serif;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+           ------------------------------------------------------------------
+            {
+            font-family: 'Arial', sans-serif;
+            font-size: 36px;
+            color: #3498db; /* Text color */
+            text-shadow: 3px 3px 5px #2980b9; /* Horizontal offset, Vertical offset, Blur radius, Shadow color */
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            -------------------------------------------------------------------------
+            {
+                font-family: 'Courier New', monospace;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 1px solid #000;
+            animation: typing 3s steps(30) infinite, blink-caret 0.5s step-end infinite;
+            
+            @keyframes typing {
+              from { width: 0 }
+              to { width: 100% }
+            }
+            
+            @keyframes blink-caret {
+              from, to { border-color: transparent }
+              50% { border-color: #000 }
+            }
+            
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            -----------------------------------------------------------------------
+            {
+                font-family: 'Arial', sans-serif;
+            font-size: 24px;
+            color: #fff;
+            -webkit-text-stroke: 2px #000;
+            
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
