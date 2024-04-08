@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebMaker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="webMaker">
+        <form id="webForm">
+            <input type="text" id="webTitle" placeholder="Type any text here for your web title"><br>
+            <input type="text" id="cssLink" placeholder="Type any text here for your CSS link"><br>
+        </form>
+        <div class="output">
+            <!-- Output will be displayed here -->
+            <div class="paragraphs">
+                <!-- Elements will be dynamically added here -->
+            </div>
+        </div>
+    </div>
+    <div class="tools">
+        <button onclick="addParagraph()">Add Paragraph</button><br>
+        <button onclick="addHeader()">Add Header</button><br>
+        <button onclick="addLink()">Add Link</button><br>
+        <button onclick="showNumberDialog()">Change Heading Number</button><br>
+        <div class="iframe">
+            <button onclick="addIframe()">Add Iframe</button><br>
+            <button onclick="addEmeb()">Add Emeb</button>
+        </div>
+        <button onclick="togglePreventRefresh()">Toggle Prevent Refresh</button><br>
+        <button onclick="clearOutput()">Clear Output</button><br>
+        <button onclick="copyOutput()">Copy Output</button><br>
+        <button onclick="saveOutput()">Save Output</button><br>
+        <button onclick="toggleDarkMode()">Toggle Dark Mode</button><br>
+        <button onclick="toggleWhiteMode()">Toggle White Mode</button><br>
+        <button onclick="toggleHistory()">Toggle History</button><br>
+        <div class="history">
+            <!-- History will be displayed here -->
+        </div>
+    </div>
+
+    <dialog id="numberDialog">
+        <button onclick="changeHeadingNumber(1)">1</button>
+        <button onclick="changeHeadingNumber(2)">2</button>
+        <button onclick="changeHeadingNumber(3)">3</button>
+        <button onclick="changeHeadingNumber(4)">4</button>
+        <button onclick="changeHeadingNumber(5)">5</button>
+        <button onclick="changeHeadingNumber(6)">6</button>
+        <button onclick="closeNumberDialog()">Close</button>
+    </dialog>
+
+    <script src="script.js"></script>
+    <script src="download.js"></script>
+</body>
+</html>
