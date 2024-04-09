@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question Generator</title> <link rel="stylesheet" href="/link.css">
+    <a href="../index.html">home</a>
+    <style>
+        body {
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+/* Centering the container */
+.container {
+  box-sizing: border-box;
+  width: 50%;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 8px; /* Rounded corners for the container */
+}
+
+/* Styling for input fields */
+input[type="text"],
+input[type="number"] {
+  width: calc(100% - 22px);
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: border-color 0.3s ease-in-out; /* Smooth transition for border color */
+}
+
+/* Placeholder styling */
+::placeholder {
+  color: #888;
+}
+
+/* Button styling */
+button {
+  background-color: #5cb85c; /* Green */
+  color: white;
+  padding: 10px 20px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #4cae4c; /* Darker green */
+}
+
+/* Output div styling */
+.output {
+  width: 100%;
+  height: auto;
+  min-height: 150px;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #e9e9e9;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  overflow-y: auto; /* Adds scroll for overflow */
+  white-space: pre-wrap; /* Keeps the formatting for copied text */
+}
+
+/* Responsive container for smaller screens */
+@media (max-width: 768px) {
+  .container {
+    width: 80%;
+    margin-top: 20px;
+  }
+}
+
+/* Adding a bit of color to the inputs on focus */
+input[type="text"]:focus,
+input[type="number"]:focus {
+  border-color: #4a90e2;
+  box-shadow: 0 0 3px #4a90e2;
+}
+
+/* Enhancing the visibility of the help text */
+h2 {
+  color: #333;
+  font-size: 1.2em;
+  margin-bottom: 20px; /* Add space below the help text */
+}
+
+/* Adding some padding to the top of the body to avoid abrupt starts */
+body {
+  padding-top: 20px;
+}
+
+/* Adjust the line height for better readability */
+body, h2, .output {
+  line-height: 1.4;
+}
+#comment-form {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  margin-bottom: 20px;
+}
+
+#comment-form input, #comment-form textarea {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#comment-form button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#comments-container {
+  border-top: 1px solid #ccc;
+  padding-top: 20px;
+}
+
+.comment button {
+  margin-top: 10px;
+  padding: 5px 10px;
+  border: none;
+  background-color: #f44336;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+a {
+    display: inline-block;
+    text-decoration: none;
+    color: #3498db;
+    background-color: #fff;
+    padding: 10px 20px;
+    border: 1px solid #3498db;
+    border-radius: 5px;
+    margin-bottom: 20px; /* Add margin to separate link from the rest */
+    transition: background-color 0.3s, color 0.3s;
+}
+
+a:hover {
+    background-color: #3498db;
+    color: #fff;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Help: Answer mapping and instructions for copying code.</h2>
+        <input type="text" placeholder="question" aria-label="Enter your question"><br>
+        <input type="text" placeholder="option1" aria-label="Option 1"><br>
+        <input type="text" placeholder="option2" aria-label="Option 2"><br>
+        <input type="text" placeholder="option3" aria-label="Option 3"><br>
+        <input type="text" placeholder="option4" aria-label="Option 4"><br>
+        <input type="number" placeholder="answer" aria-label="Correct answer number"><br>
+        <button id="generate">Generate Code</button>
+        <button id="copy">Copy to Clipboard</button>
+        <div class="output" aria-live="polite"></div>
+    </div>
+    <div id="comment-form">
+  <input type="text" id="name" placeholder="Your Name" required>
+  <!-- Add a color picker for the name color -->
+<input type="color" id="nameColor" title="Choose your name color">
+  <textarea id="comment" placeholder="Your Comment" required></textarea>
+  <button onclick="submitComment()">Submit</button>
+</div>
+<div id="comments-container"></div>
+    <script>
+document.addEventListener("DOMContentLoaded", () => {
+    const questionInput = document.querySelector('input[placeholder="question"]');
+    const optionInputs = document.querySelectorAll('input[placeholder^="option"]');
+    const answerInput = document.querySelector('input[type="number"]');
+    const outputDiv = document.querySelector('.output');
+    const generateButton = document.getElementById('generate');
+    const copyButton = document.getElementById('copy');
+    
+    // This array will hold all the question objects
+    let questionsStack = [];
+
+    generateButton.addEventListener('click', () => {
+        const question = questionInput.value.trim();
+        const options = Array.from(optionInputs).map(input => input.value.trim());
+        const answer = parseInt(answerInput.value, 10);
+
+        // Validation checks
+        if (!question || options.some(opt => !opt) || isNaN(answer) || answer < 1 || answer > options.length) {
+            outputDiv.textContent = 'Please fill in all fields correctly.';
+            return;
+        }
+
+        // Create the question object
+        const questionObj = {
+            question: question + "?",
+            options: options,
+            answer: answer
+        };
+
+        // Add the new question object to the stack
+        questionsStack.push(questionObj);
+
+        // Display the stack in the output div
+        outputDiv.textContent = questionsStack.map(qObj => 
+         `            {
+            const question = "${qObj.question}";
+            const options = [${qObj.options.map(opt => `"${opt}"`).join(', ')}];
+            const answer = ${qObj.answer};
+            }`
+        ).join('\n\n');
+    });
+
+    copyButton.addEventListener('click', async () => {
+        try {
+            await navigator.clipboard.writeText(outputDiv.textContent);
+            console.log('Code copied to clipboard');
+        } catch (err) {
+            console.error('Error in copying text: ', err);
+        }
+    });
+});
+
+    </script>
+    <script>// Load existing comments and name from localStorage when the page loads
+// Event listener for DOMContentLoaded to load saved data
+document.addEventListener('DOMContentLoaded', function() {
+  loadComments();
+  loadNameAndColor();
+});
+
+// Function to submit a comment
+function submitComment() {
+  const name = document.getElementById('name').value.trim();
+  const comment = document.getElementById('comment').value.trim();
+  const nameColor = document.getElementById('nameColor').value;
+
+  if (name && comment) {
+    // Save the name and color to localStorage
+    localStorage.setItem('name', name);
+    localStorage.setItem('nameColor', nameColor);
+
+    // Create a new comment element
+    const commentDiv = document.createElement('div');
+    commentDiv.classList.add('comment');
+    commentDiv.innerHTML = `
+      <strong style="color: ${nameColor};">${name}</strong>
+      <p>${comment}</p>
+      <button onclick="deleteComment(this)">Delete</button>
+    `;
+
+    // Append the new comment to the container
+    const commentsContainer = document.getElementById('comments-container');
+    commentsContainer.appendChild(commentDiv);
+
+    // Save comments to localStorage
+    saveComments();
+
+    // Clear the comment input field
+    document.getElementById('comment').value = '';
+  } else {
+    alert('Please fill in both fields.');
+  }
+}
+
+// Function to delete a comment
+function deleteComment(deleteButton) {
+  if (confirm('Are you sure you want to delete this comment?')) {
+    const commentDiv = deleteButton.parentElement;
+    const commentsContainer = document.getElementById('comments-container');
+
+    commentsContainer.removeChild(commentDiv);
+
+    // Update localStorage after deletion
+    saveComments();
+  }
+}
+
+// Function to save comments to localStorage
+function saveComments() {
+  const commentsContainer = document.getElementById('comments-container');
+  localStorage.setItem('comments', commentsContainer.innerHTML);
+}
+
+// Function to load comments from localStorage
+function loadComments() {
+  const savedComments = localStorage.getItem('comments');
+  if (savedComments) {
+    document.getElementById('comments-container').innerHTML = savedComments;
+  }
+}
+
+// Function to load the name and name color from localStorage
+function loadNameAndColor() {
+  const savedName = localStorage.getItem('name');
+  const savedColor = localStorage.getItem('nameColor');
+
+  if (savedName) {
+    document.getElementById('name').value = savedName;
+  }
+  if (savedColor) {
+    document.getElementById('nameColor').value = savedColor;
+  }
+}
+
+// Call this function to ensure that delete buttons are properly set up after loading comments
+function setupDeleteButtons() {
+  const deleteButtons = document.querySelectorAll('.comment button');
+  deleteButtons.forEach(button => {
+    button.onclick = function() { deleteComment(this); };
+  });
+}
+
+// Call the setup delete buttons function after loading comments
+setupDeleteButtons();
+
+</script>
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pixel Art Editor</title> 
+<a href="../index.html">home</a>
+<style>
+  body {
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  #pixelCanvas {
+    display: grid;
+    grid-template-columns: repeat(32, 20px); /* Adjusted for a 32x32 grid */
+    justify-content: center;
+    gap: 1px;
+    margin-top: 10px;
+  }
+  .pixel {
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    border: 1px solid #e4e4e4;
+    cursor: pointer;
+  }
+  #colorPicker {
+    margin-bottom: 10px;
+  }
+  .gridOn .pixel {
+  border: none; /* This will remove the border when the grid is toggled off */
+}
+
+button {
+  background-color: #f2f2f2; /* Light grey background */
+  border: 1px solid #dcdcdc; /* Slightly darker border */
+  padding: 10px 15px; /* Top and bottom padding of 10px, left and right padding of 15px */
+  cursor: pointer; /* Cursor appears as a pointer when hovering over the button */
+  font-size: 16px; /* Larger font size for better readability */
+  margin: 5px; /* Adds space around the buttons */
+  border-radius: 5px; /* Slightly rounded corners for the buttons */
+  outline: none; /* Removes the outline to improve aesthetics */
+}
+
+button:hover {
+  background-color: #e8e8e8; /* Slightly darker background on hover */
+}
+
+button:active {
+  background-color: #dcdcdc; /* Even darker background when the button is clicked */
+}
+
+input[type="number"] {
+  padding: 5px; /* Padding inside the input fields */
+  border: 1px solid #dcdcdc; /* Border to match the buttons */
+  margin: 5px; /* Space around the input fields */
+  width: 80px; /* Fixed width for the number inputs */
+}
+
+input[type="color"] {
+  padding: 5px; /* Padding inside the color input field */
+  border: none; /* No border for the color input to let the color be more prominent */
+  cursor: pointer; /* Cursor appears as a pointer when hovering over the color input */
+  height: 30px; /* Increased height to match the size of other inputs and buttons */
+  vertical-align: middle; /* Aligns the color picker to the middle of the text line */
+}
+
+#toolSelection button {
+  width: 90px; /* Width of the buttons in the tool selection to keep them uniform */
+}
+
+#colorPicker {
+  margin-bottom: 20px; /* Increased bottom margin for space above the grid */
+}
+
+/* Additional styles for the grid container when the grid is toggled on/off */
+.gridOn #pixelCanvas {
+  outline: 1px solid #dcdcdc; /* Adds an outline to the entire canvas when the grid is on */
+}
+a {
+    display: inline-block;
+    text-decoration: none;
+    color: #3498db;
+    background-color: #fff;
+    padding: 10px 20px;
+    border: 1px solid #3498db;
+    border-radius: 5px;
+    margin-bottom: 20px; /* Add margin to separate link from the rest */
+    transition: background-color 0.3s, color 0.3s;
+}
+
+a:hover {
+    background-color: #3498db;
+    color: #fff;
+}
+</style>
+</head>
+<body>
+
+<div id="colorPicker">
+  <label for="selectedColor">Choose Color:</label>
+  <input type="color" id="selectedColor" value="#000000" />
+  <button onclick="fillAll()">Fill All</button>
+  <button onclick="clearAll()">Clear All</button>
+  <button id="toggleGrid">Toggle Grid</button>
+  <!-- ... existing HTML ... -->
+
+<button onclick="saveArt()">Save Art</button>
+<button onclick="loadArt()">Load Art</button>
+<button onclick="exportArt()">Export Art</button>
+<button onclick="undo()">Undo</button>
+<button onclick="redo()">Redo</button>
+<!-- ... existing HTML ... -->
+
+<div id="toolSelection">
+  <button id="pencilTool" onclick="selectTool('pencil')">Pencil</button>
+  <button id="eraserTool" onclick="selectTool('eraser')">Eraser</button>
+  <button id="fillBucketTool" onclick="selectTool('fillBucket')">Fill Bucket</button>
+</div>
+
+<!-- ... existing HTML ... -->
+<label for="inputRows">Rows:</label>
+<input type="number" id="inputRows" value="32" min="1" max="100">
+<label for="inputColumns">Columns:</label>
+<input type="number" id="inputColumns" value="32" min="1" max="100">
+<button onclick="updateGridSize()">Update Grid Size</button>
+
+<!-- ... existing HTML ... -->
+
+  
+</div>
+
+<div id="pixelCanvas"></div>
+
+<script>
+  const canvasSize = 32; // Define the size of the canvas
+  const canvas = document.getElementById('pixelCanvas');
+  const selectedColor = document.getElementById('selectedColor');
+
+  
+ function createPixels(rows, columns) {
+  canvas.innerHTML = ''; // Clear the current grid
+  canvas.style.gridTemplateColumns = `repeat(${columns}, 20px)`; // Set the number of columns
+  for (let i = 0; i < rows * columns; i++) {
+    const pixel = document.createElement('div');
+    pixel.classList.add('pixel');
+    // Here we define the coloring function directly
+    pixel.addEventListener('click', function() {
+      this.style.backgroundColor = selectedColor.value;
+      saveHistory();
+    });
+    canvas.appendChild(pixel);
+  }
+}
+
+
+function updateGridSize() {
+  const rows = document.getElementById('inputRows').value;
+  const columns = document.getElementById('inputColumns').value;
+  createPixels(rows, columns);
+}
+
+
+
+  // Function to fill all pixels with the selected color
+  function fillAll() {
+    document.querySelectorAll('.pixel').forEach(pixel => pixel.style.backgroundColor = selectedColor.value);
+  }
+
+  // Function to clear all pixels
+  function clearAll() {
+    document.querySelectorAll('.pixel').forEach(pixel => pixel.style.backgroundColor = '#fff');
+  }
+
+  // Function to toggle grid lines
+  function toggleGrid() {
+    canvas.classList.toggle('gridOn');
+  }
+
+  // Add event listener to the grid toggle button
+  document.getElementById('toggleGrid').addEventListener('click', toggleGrid);
+
+  // Initialize the pixel canvas
+  createPixels(canvasSize);
+  // ... existing JavaScript code ...
+
+// Function to save the current state of the pixel art
+function saveArt() {
+  const pixelData = [];
+  document.querySelectorAll('.pixel').forEach((pixel, i) => {
+    pixelData.push(pixel.style.backgroundColor);
+  });
+  localStorage.setItem('pixelArt', JSON.stringify(pixelData));
+  alert('Art saved!');
+}
+
+// Function to load the saved pixel art
+function loadArt() {
+  const pixelData = JSON.parse(localStorage.getItem('pixelArt'));
+  if (pixelData) {
+    document.querySelectorAll('.pixel').forEach((pixel, i) => {
+      pixel.style.backgroundColor = pixelData[i] || '#fff'; // Fallback to white if no color was saved
+    });
+    alert('Art loaded!');
+  } else {
+    alert('No saved art found.');
+  }
+}
+
+// ... existing JavaScript code ...
+// Function to download the pixel art as an image
+function exportArt() {
+  const rows = document.getElementById('inputRows').value;
+  const columns = document.getElementById('inputColumns').value;
+  const exportCanvas = document.createElement('canvas');
+  exportCanvas.width = columns * 20;
+  exportCanvas.height = rows * 20;
+  const ctx = exportCanvas.getContext('2d');
+
+  document.querySelectorAll('.pixel').forEach((pixel, index) => {
+    ctx.fillStyle = pixel.style.backgroundColor || 'white';
+    ctx.fillRect((index % columns) * 20, Math.floor(index / columns) * 20, 20, 20);
+  });
+
+  const link = document.createElement('a');
+  link.href = exportCanvas.toDataURL('image/png');
+  link.download = 'pixel-art.png';
+  link.click();
+}
+
+let history = [];
+let redoStack = [];
+
+function saveHistory() {
+  const currentHistory = [...document.querySelectorAll('.pixel')].map(p => p.style.backgroundColor || 'white');
+  history.push(currentHistory);
+  redoStack = []; // Clear the redo stack on new action
+}
+
+function undo() {
+  if (history.length > 0) {
+    redoStack.push(history.pop());
+    const previousState = history[history.length - 1] || [];
+    applyHistory(previousState);
+  }
+}
+
+function redo() {
+  if (redoStack.length > 0) {
+    const nextState = redoStack.pop();
+    history.push(nextState);
+    applyHistory(nextState);
+  }
+}
+
+function applyHistory(stateArray) {
+  document.querySelectorAll('.pixel').forEach((pixel, i) => {
+    pixel.style.backgroundColor = stateArray[i] || 'white';
+  });
+}
+
+// Modify the pixel click event listener to save history
+document.querySelectorAll('.pixel').forEach(pixel => {
+  pixel.addEventListener('click', () => {
+    pixel.style.backgroundColor = selectedColor.value;
+    saveHistory(); // Save the state on each click
+  });
+});
+
+// ... existing JavaScript code ...
+
+let isMouseDown = false;
+
+// Function to handle mouse down event
+function handleMouseDown() {
+  isMouseDown = true;
+}
+
+// Function to handle mouse up event
+function handleMouseUp() {
+  isMouseDown = false;
+  saveHistory(); // Save the state when the mouse is released
+}
+
+// Function to handle mouse move event
+function handleMouseMove(event) {
+  if (isMouseDown) {
+    // Check if the event target is a pixel
+    if (event.target.classList.contains('pixel')) {
+      event.target.style.backgroundColor = selectedColor.value;
+    }
+  }
+}
+
+// Add these event listeners to the canvas
+canvas.addEventListener('mousedown', handleMouseDown);
+canvas.addEventListener('mouseup', handleMouseUp);
+canvas.addEventListener('mouseleave', handleMouseUp); // To handle the case when the mouse leaves the canvas area
+
+// Add the mouse move event listener to each pixel
+document.querySelectorAll('.pixel').forEach(pixel => {
+  pixel.addEventListener('mousemove', handleMouseMove);
+});
+
+// Update the existing event listener for pixel click
+document.querySelectorAll('.pixel').forEach(pixel => {
+  pixel.removeEventListener('click', colorPixel); // Remove the old click event
+  pixel.addEventListener('mousedown', () => {
+    pixel.style.backgroundColor = selectedColor.value; // Color on click
+    saveHistory(); // Save the state on click
+  });
+});
+
+// Call saveHistory on fillAll and clearAll functions as well
+// ... existing fillAll and clearAll functions ...
+
+// ... existing JavaScript code ...
+
+// ... existing JavaScript code ...
+
+let currentTool = 'pencil';
+
+// Function to select a tool
+function selectTool(tool) {
+  currentTool = tool;
+}
+
+// Modify the pixel event listeners to use the selected tool
+function applyTool(event) {
+  // Prevent any default behavior
+  event.preventDefault();
+
+  if (event.buttons === 1 || event.type === 'mousedown') { // Checks if the left mouse button is pressed or if it's a mousedown event
+    switch (currentTool) {
+      case 'pencil':
+        event.target.style.backgroundColor = selectedColor.value;
+        break;
+      case 'eraser':
+        event.target.style.backgroundColor = '#fff'; // Assuming white is your canvas' background color
+        break;
+      case 'fillBucket':
+        // The fillAll function will fill the entire canvas and save the history
+        fillAll();
+        break;
+    }
+    saveHistory(); // Save after applying the tool
+  }
+}
+
+// Call applyTool for mousedown and mousemove events
+document.querySelectorAll('.pixel').forEach(pixel => {
+  pixel.removeEventListener('mousemove', handleMouseMove); // Remove the previous mousemove event
+  pixel.removeEventListener('mousedown', handleMouseDown); // Remove the previous mousedown event
+  pixel.addEventListener('mousedown', applyTool);
+  pixel.addEventListener('mousemove', applyTool);
+});
+
+</script>
+
+</body>
+</html>

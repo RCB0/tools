@@ -1,0 +1,51 @@
+<!-- index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radar Chart Editor</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        canvas {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        div {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <a href="../index.html" class="l">Home</a>
+    <link rel="stylesheet" href="../link.css">
+<div>
+    <label for="labelInput">Labels:</label>
+    <input type="text" id="labelInput" placeholder="Enter labels, comma-separated">
+</div>
+<div>
+    <label for="dataInput">Data:</label>
+    <input type="text" id="dataInput" placeholder="Enter data values, comma-separated">
+</div>
+<div>
+    <label for="radarColor">Radar Color:</label>
+    <input type="color" id="radarColor" value="#FF5733">
+</div>
+<button onclick="updateChart()">Update Radar Chart</button>
+<button onclick="generateRandomColors()">Generate Random Colors</button>
+<button onclick="downloadAsHTML()">Download as HTML</button>
+<button onclick="downloadAsRadarGraph()">Download as .radar-grap</button>
+<input type="file" accept=".radar-grap" onchange="importRadarGraphFile()">
+<canvas id="myRadarChart" width="600" height="400"></canvas>
+
+<script src="rader-chart.js"></script><script src="/function.js"></script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Word Counter</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+    <h1>Word Counter</h1>
+</header>
+<main>
+    <div class="word-counter">
+        <textarea id="textInput" placeholder="Enter your text here" rows="6"></textarea>
+        <button id="countWords">Count Words</button> <a href="../index.html"><button id="countInput">Home</button></a>
+        <div id="counterResult"></div>
+    </div>
+</main>
+<script>
+    // wordCounter.js
+document.addEventListener('DOMContentLoaded', function() {
+    const textInput = document.getElementById('textInput');
+    const countWordsBtn = document.getElementById('countWords');
+    const counterResult = document.getElementById('counterResult');
+
+    countWordsBtn.addEventListener('click', function() {
+        const text = textInput.value.trim();
+        if (text) {
+            const wordCount = countWords(text);
+            const charCount = text.length;
+            const sentenceCount = countSentences(text);
+            counterResult.innerHTML = `
+                <p><strong>Word Count:</strong> ${wordCount}</p>
+                <p><strong>Character Count:</strong> ${charCount}</p>
+                <p><strong>Sentence Count:</strong> ${sentenceCount}</p>
+            `;
+        } else {
+            alert('Please enter some text.');
+        }
+    });
+
+    function countWords(text) {
+        const words = text.trim().split(/\s+/);
+        return words.length;
+    }
+
+    function countSentences(text) {
+        // Naive approach: Count the number of periods, question marks, and exclamation marks
+        const sentences = text.match(/[.!?]+/g) || [];
+        return sentences.length;
+    }
+});
+
+</script>
+</body>
+</html>
+<style>
+    /* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 70px);
+}
+
+.word-counter {
+    width: 300px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.word-counter textarea {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.word-counter button {
+    padding: 8px 15px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.word-counter button:hover {
+    background-color: #555;
+}
+
+</style>

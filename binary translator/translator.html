@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binary Translator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        input[type="text"] {
+            padding: 8px;
+            margin-bottom: 10px;
+            transition: background-color 0.3s;
+        }
+        button {
+            padding: 8px 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .output-box {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-top: 20px;
+        }
+        .output-box h3 {
+            margin-top: 0;
+        }
+        .copy-symbol::before {
+            content: "\1F4CB"; /* Unicode character for clipboard icon */
+            font-size: 18px;
+            margin-right: 5px;
+        }
+        #history {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            color: #4CAF50;
+           
+        }
+    </style>
+</head>
+<body>
+    <h2>Binary Translator</h2><a href="../index.html" style="text-decoration: none; color: rgb(255, 255, 255);"><button>Home</button></a><br><br>
+    <input type="text" id="inputText" placeholder="Enter text"><br>
+    <button onclick="convertToBinary()">Binary</button>
+    <button onclick="pasteFromClipboard('inputText')">Paste</button>
+    <button onclick="clearInput('inputText')">Clear</button><br><br>
+    
+    <input type="text" id="inputBinary" placeholder="Enter binary"><br>
+    <button onclick="convertToText()">Text</button>
+    <button onclick="pasteFromClipboard('inputBinary')">Paste</button>
+    <button onclick="clearInput('inputBinary')">Clear</button>
+
+    <div class="output-box" id="binaryOutput">
+        <h3>Binary Output</h3>
+        <button onclick="copyBinary()"><span class="copy-symbol"></span>Copy</button><br><br>
+        <div id="binaryResult"></div>
+    </div>
+
+    <div class="output-box" id="textOutput">
+        <h3>Text Output</h3>
+        <button onclick="copyText()"><span class="copy-symbol"></span>Copy</button><br><br>
+        <div id="textResult"></div>
+    </div>
+
+    <div id="history">
+        <h3>History</h3>
+        <textarea id="historyTextarea" readonly></textarea>
+    </div>
+
+    <button onclick="toggleDarkMode()">Dark Mode</button>
+    <button onclick="toggleWhiteMode()">White Mode</button>
+
+    <script>
+        // Check if dark mode preference is stored
+        const darkMode = localStorage.getItem('darkMode');
+        if (darkMode === 'true') {
+            enableDarkMode();
+        }
+
+        function convertToBinary() {
+            var inputText = document.getElementById("inputText").value;
+            var binaryOutput = "";
+
+            for (var i = 0; i < inputText.length; i++) {
+                var charCode = inputText.charCodeAt(i);
+                var binaryCharCode = charCode.toString(2);
+                binaryOutput += binaryCharCode.padStart(8, '0') + " "; // Pad to 8 bits
+            }
+
+            document.getElementById("binaryResult").innerText = binaryOutput;
+            addToHistory(inputText, binaryOutput);
+        }
+
+        function convertToText() {
+            var inputBinary = document.getElementById("inputBinary").value;
+            var binaryArray = inputBinary.split(" ");
+            var textOutput = "";
+
+            for (var i = 0; i < binaryArray.length; i++) {
+                var decimalCharCode = parseInt(binaryArray[i], 2);
+                var char = String.fromCharCode(decimalCharCode);
+                textOutput += char;
+            }
+
+            document.getElementById("textResult").innerText = textOutput;
+            addToHistory(textOutput, inputBinary);
+        }
+
+        function copyBinary() {
+            var binaryOutput = document.getElementById("binaryResult").innerText;
+            copyToClipboard(binaryOutput);
+        }
+
+        function copyText() {
+            var textOutput = document.getElementById("textResult").innerText;
+            copyToClipboard(textOutput);
+        }
+
+        function copyToClipboard(text) {
+            var tempElement = document.createElement("textarea");
+            tempElement.value = text;
+            document.body.appendChild(tempElement);
+            tempElement.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempElement);
+            alert("Copied to clipboard!");
+        }
+
+        function pasteFromClipboard(inputId) {
+            navigator.clipboard.readText()
+                .then(text => {
+                    document.getElementById(inputId).value = text;
+                })
+                .catch(err => {
+                    console.error('Failed to read clipboard contents: ', err);
+                });
+        }
+
+        function clearInput(inputId) {
+            document.getElementById(inputId).value = "";
+        }
+
+        function addToHistory(input, output) {
+            var historyTextarea = document.getElementById("historyTextarea");
+            historyTextarea.value += "Input: " + input + "\nOutput: " + output + "\n\n";
+        }
+
+        function toggleDarkMode() {
+            enableDarkMode();
+            localStorage.setItem('darkMode', 'true');
+        }
+
+        function toggleWhiteMode() {
+            document.body.style.backgroundColor = "#f0f0f0"; /* default background color */
+            document.body.style.color = "#333"; /* default text color */
+            document.getElementById("inputText").style.backgroundColor = ""; // Reset input background color
+            localStorage.removeItem('darkMode');
+        }
+
+        function enableDarkMode() {
+            document.body.style.backgroundColor = "#333"; /* dark mode background color */
+            document.body.style.color = "#fff"; /* dark mode text color */
+            document.getElementById("inputText").style.backgroundColor = "#555"; /* dark mode input background color */
+        }
+    </script>
+</body>
+</html>

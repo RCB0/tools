@@ -1,0 +1,27 @@
+button {
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin: 5px;
+  width: 200px;
+}
+
+button:hover {
+  background-color: #2980b9;
+}
+
+#play-again-button {
+  background-color: #2196f3;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+#play-again-button:hover {
+  background-color: #0b7dda;
+}

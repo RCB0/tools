@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Generator</title>
+    <link rel="stylesheet" href="m.css">
+    <a href="../index.html">Home</a>
+    <H5><mark><b><b><b><b><em><b>REYN's code generator for text</b></em></b></b></b></b></mark></H5>
+</head>
+<body>
+        
+    <div>
+    <input type="text" id="textInput" placeholder="Enter text or URL"><br>
+    <button id="boldBtn" onclick="toggleFormatting('bold')">B</button>
+    <button id="italicBtn" onclick="toggleFormatting('italic')">em</button>
+    <button id="underlineBtn" onclick="toggleFormatting('underline')">i</button>
+    <button id="headingBtn" onclick="generateHeading()">Heading</button>
+    <button id="paragraphBtn" onclick="generateParagraph()">Paragraph</button>
+    <button id="hrBtn" onclick="generateHorizontalRule()">Horizontal Rule</button><br>
+    <button id="colorBtn" onclick="generateColor()">color</button>
+    <button id="sizeBtn" onclick="generateSize()">size</button>
+    <button id="linkBtn" onclick="generateLink()">Link</button>
+    <button id="imageBtn" onclick="generateImage()">Image</button>
+    <button id="ulBtn" onclick="generateUnorderedList()">UL</button>
+    <button id="olBtn" onclick="generateOrderedList()">OL</button>
+    <button id="blockquoteBtn" onclick="generateBlockquote()">Blockquote</button><br>
+    <button id="codeBtn" onclick="generateCode()">Code</button>
+    <button id="quoteBtn" onclick="generateQuote()">Quote</button>
+    <button id="preBtn" onclick="generatePreformatted()">Preformatted</button>
+    <button id="strikeBtn" onclick="toggleFormatting('strike')">Strike</button>
+    <button id="subscriptBtn" onclick="toggleFormatting('subscript')">Subscript</button>
+    <button id="superscriptBtn" onclick="toggleFormatting('superscript')">Superscript</button><br>
+    <button id="abbrBtn" onclick="generateAbbreviation()">Abbreviation</button>
+    <button id="markBtn" onclick="generateMarkedText()">Marked Text</button>
+    <button id="smallBtn" onclick="generateSmallText()">Small Text</button>
+    <button id="strongBtn" onclick="generateStrongText()">Strong Text</button>
+    <button id="delBtn" onclick="toggleFormatting('delete')">Deleted Text</button>
+    <button id="insBtn" onclick="toggleFormatting('insert')">Inserted Text</button>
+    <button id="hrBtn" onclick="generateHorizontalRule()">Horizontal Rule</button>
+    <button id="supBtn" onclick="toggleFormatting('superscript')">Superscript</button>
+    <button id="subBtn" onclick="toggleFormatting('subscript')">Subscript</button>
+    
+    </div>
+    <button id="copyBtn" onclick="copyCode()" class="copy">Copy</button>
+    <div id="output"></div>
+    
+    <script src="ss.js"></script>    
+</body>
+  </html>
+
+
+
+
+  

@@ -1,0 +1,54 @@
+<!-- index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heatmap Chart Editor</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        canvas {
+            max-width: 88%;
+            height: auto;
+            border: 1px solid #ddd;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        div {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <a href="../index.html" class="l">Home</a>
+    <link rel="stylesheet" href="../link.css">
+<div>
+    <label for="rowsInput">Rows:</label>
+    <input type="number" id="rowsInput" min="1" value="5">
+</div>
+<div>
+    <label for="columnsInput">Columns:</label>
+    <input type="number" id="columnsInput" min="1" value="5">
+</div>
+<div>
+    <label for="colorInput">Cell Colors:</label>
+    <input type="text" id="colorInput" placeholder="Enter colors, comma-separated" />
+</div>
+<a href="/index.html">home</a>
+<button onclick="updateChart()">Update Heatmap Chart</button>
+<button onclick="generateRandomData()">Generate Random Data</button>
+<button onclick="downloadAsHTML()">Download as HTML</button>
+<button onclick="downloadAsHeatmapGraph()">Download as .heatmap-grap</button>
+<input type="file" accept=".heatmap-grap" onchange="importHeatmapGraphFile()">
+<canvas id="myHeatmapChart" width="400" height="400"></canvas>
+
+<script src="heatmap.js"></script>
+<script src="/function.js"></script>
+
+</body>
+</html>
