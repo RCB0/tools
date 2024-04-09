@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Code Snippet Manager</title>
+<style>
+    /* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+main {
+    padding: 20px;
+}
+
+.snippet-form {
+    margin-bottom: 20px;
+}
+
+.snippet-form input,
+.snippet-form textarea,
+.snippet-form select {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+.snippet-form button {
+    padding: 8px 15px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.snippet-form button:hover {
+    background-color: #555;
+}
+
+.snippet-card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+</style>
+</head>
+<body>
+<header>
+    <h1>Code Snippet Manager</h1>
+</header>
+<main>
+    <div class="snippet-form">
+        <input type="text" id="snippetName" placeholder="Snippet Name" required>
+        <textarea id="snippetCode" placeholder="Enter your code snippet" required></textarea>
+        <select id="snippetLanguage" required>
+            <option value="">Select Language</option>
+            <option value="javascript">JavaScript</option>
+            <option value="python">Python</option>
+            <option value="html">HTML</option>
+            <!-- Add more options as needed -->
+        </select>
+        <button id="saveSnippet">Save Snippet</button> <a href="../index.html"><button id="saveSnippet">Home</button></a>
+    </div>
+    <div id="snippetList">
+        <!-- Snippet cards will be displayed here -->
+    </div>
+</main>
+<script>
+    // snippetManager.js
+document.addEventListener('DOMContentLoaded', function() {
+    const saveSnippetBtn = document.getElementById('saveSnippet');
+    const snippetList = document.getElementById('snippetList');
+
+    // Load saved snippets from localStorage on page load
+    loadSavedSnippets();
+
+    saveSnippetBtn.addEventListener('click', function() {
+        const snippetName = document.getElementById('snippetName').value;
+        const snippetCode = document.getElementById('snippetCode').value;
+        const snippetLanguage = document.getElementById('snippetLanguage').value;
+        const createdAt = new Date().toISOString();
+        const updatedAt = createdAt; // Initial creation sets updatedAt to createdAt
+
+        if (snippetName && snippetCode && snippetLanguage) {
+            // Create a new snippet object
+            const snippet = {
+                name: snippetName,
+                code: snippetCode,
+                language: snippetLanguage,
+                createdAt: createdAt,
+                updatedAt: updatedAt
+            };
+
+            // Save snippet to localStorage
+            saveSnippet(snippet);
+
+            // Add snippet to the list
+            addSnippetToList(snippet);
+
+            // Reset form fields
+            document.getElementById('snippetName').value = '';
+            document.getElementById('snippetCode').value = '';
+            document.getElementById('snippetLanguage').value = '';
+        } else {
+            alert('Please fill in all fields.');
+        }
+    });
+
+    function saveSnippet(snippet) {
+        let snippets = JSON.parse(localStorage.getItem('snippets')) || [];
+        snippets.push(snippet);
+        localStorage.setItem('snippets', JSON.stringify(snippets));
+    }
+
+    function loadSavedSnippets() {
+        let snippets = JSON.parse(localStorage.getItem('snippets')) || [];
+        snippets.forEach(snippet => {
+            addSnippetToList(snippet);
+        });
+    }
+
+    function addSnippetToList(snippet) {
+        // Create a new snippet card
+        const snippetCard = document.createElement('div');
+        snippetCard.classList.add('snippet-card');
+        snippetCard.innerHTML = `
+            <h3>${snippet.name}</h3>
+            <p>Created: ${snippet.createdAt}</p>
+            <p>Last Edited: ${snippet.updatedAt}</p>
+            <pre><code class="language-${snippet.language}">${snippet.code}</code></pre>
+            <button class="editSnippet">Edit</button>
+            <button class="removeSnippet">Remove</button>
+        `;
+        snippetList.appendChild(snippetCard);
+
+        // Add event listeners for edit and remove buttons
+        snippetCard.querySelector('.editSnippet').addEventListener('click', function() {
+            // Implement edit functionality
+            // For example, you can populate the form fields with the snippet data for editing
+            document.getElementById('snippetName').value = snippet.name;
+            document.getElementById('snippetCode').value = snippet.code;
+            document.getElementById('snippetLanguage').value = snippet.language;
+
+            // Remove the snippet from localStorage
+            removeSnippet(snippet);
+            // Remove the snippet from the UI
+            snippetCard.remove();
+        });
+
+        snippetCard.querySelector('.removeSnippet').addEventListener('click', function() {
+            // Remove the snippet from localStorage
+            removeSnippet(snippet);
+            // Remove the snippet from the UI
+            snippetCard.remove();
+        });
+    }
+
+    function removeSnippet(snippet) {
+        let snippets = JSON.parse(localStorage.getItem('snippets')) || [];
+        snippets = snippets.filter(s => s.name !== snippet.name || s.code !== snippet.code || s.language !== snippet.language);
+        localStorage.setItem('snippets', JSON.stringify(snippets));
+    }
+});
+
+</script>
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Binary to HTML Converter</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+  }
+  .container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  h1 {
+    text-align: center;
+  }
+  textarea {
+    width: 100%;
+    height: 200px;
+    resize: none;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+  }
+  button:hover {
+    background-color: #45a049;
+  }
+  .output-container {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    white-space: pre-wrap;
+  }
+  .error {
+    color: #ff0000;
+    font-weight: bold;
+  }
+  .btn-group {
+    margin-top: 10px;
+  }
+  .dark-mode-btn {
+    background-color: #333;
+  }
+  .character-count {
+    margin-top: 5px;
+    font-size: 14px;
+    color: #888;
+  }
+  @media (max-width: 600px) {
+    .container {
+      padding: 10px;
+    }
+    textarea {
+      height: 150px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Binary to HTML Converter</h1>
+
+  <textarea id="binaryInput" placeholder="Enter binary here..."></textarea>
+  <div class="character-count" id="characterCount"></div>
+  <div class="btn-group">
+    <a href="../index.html"><button>Home</button></a>
+    <button onclick="convertBinary()">Convert</button>
+    <button onclick="copyOutput()">Copy Output</button>
+    <button onclick="clearInput()">Clear Input</button>
+    <button onclick="clearOutput()">Clear Output</button>
+    <button class="dark-mode-btn" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+  </div>
+
+  <div class="output-container" id="output"></div>
+</div>
+
+<script>
+function convertBinary() {
+  var binaryInput = document.getElementById("binaryInput").value;
+  var binaryArray = binaryInput.trim().split(" ");
+  var htmlOutput = "";
+  var error = "";
+
+  // Validate binary input
+  for (var i = 0; i < binaryArray.length; i++) {
+    var binaryChar = binaryArray[i];
+    if (!/^[01]+$/.test(binaryChar)) {
+      error = "Invalid binary input. Please enter a valid binary string.";
+      break;
+    }
+  }
+
+  // Convert binary to HTML
+  if (!error) {
+    for (var i = 0; i < binaryArray.length; i++) {
+      var binaryChar = binaryArray[i];
+      var decimalValue = parseInt(binaryChar, 2);
+      var char = String.fromCharCode(decimalValue);
+      htmlOutput += char;
+    }
+  }
+
+  // Check for Easter egg
+  if (binaryInput.includes("01010100 01001000 01000101 00100000 01010011 01001000 01001111 01010111")) {
+    htmlOutput = "<p>The show must go on!</p>";
+  }
+
+  // Display output or error
+  var outputElement = document.getElementById("output");
+  if (error) {
+    outputElement.innerHTML = "<p class='error'>" + error + "</p>";
+  } else {
+    outputElement.innerHTML = htmlOutput;
+  }
+
+  // Update character count
+  var characterCountElement = document.getElementById("characterCount");
+  var totalCharacters = binaryInput.replace(/\s/g, "").length;
+  characterCountElement.textContent = "Total characters: " + totalCharacters;
+}
+
+function copyOutput() {
+  var outputElement = document.getElementById("output");
+  var range = document.createRange();
+  range.selectNode(outputElement);
+  window.getSelection().removeAllRanges();
+  window.getSelection().addRange(range);
+  document.execCommand("copy");
+  window.getSelection().removeAllRanges();
+}
+
+function clearInput() {
+  document.getElementById("binaryInput").value = "";
+  updateCharacterCount();
+}
+
+function clearOutput() {
+  document.getElementById("output").innerHTML = "";
+}
+
+function toggleDarkMode() {
+  document.body.classList.toggle("dark-mode");
+}
+
+function updateCharacterCount() {
+  var binaryInput = document.getElementById("binaryInput").value;
+  var totalCharacters = binaryInput.replace(/\s/g, "").length;
+  var characterCountElement = document.getElementById("characterCount");
+  characterCountElement.textContent = "Total characters: " + totalCharacters;
+}
+
+// Update character count on input change
+document.getElementById("binaryInput").addEventListener("input", updateCharacterCount);
+</script>
+
+</body>
+</html>
