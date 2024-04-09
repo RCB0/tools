@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Tool-pc</title>
+    <link rel="stylesheet" href="s.css"> 
+    <link rel="stylesheet" href="menu/themes.css">
+    <link rel="stylesheet" href="themes.css">
+    <br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <h3 class="z">created by<mark> Reyn</mark></h3>
+    <h1>for <mark>PC</mark> users</h1>
+    <a class="Aa" href="../index.html">home</a>
+</head>
+<body>
+    <div id="content" contenteditable="true" aria-placeholder="ffffff"> 
+       <span>Type Here</span>
+    </div>
+    <!--
+<div><font size="6"><b>Welcom to Reyn's Website</b></font></div><div><b>Visit&nbsp;<a href="https://www.facebook.com/profile.php?id=100093510621665"><font color="#0101f9">Reyn</font></a>&nbsp;on <font color="#005cb3"><u>Facebook</u></font></b></div><div><b><font color="#005cb3"><u><br></u></font></b></div><div><b><font color="#005cb3"><u><br></u></font></b></div>
+    -->
+    <br>
+    <div class="cickable">
+        <button onclick="boldText()"><b>Bold</b></button>
+        <button onclick="italicText()"><i>italic</i></button>
+        <button onclick="bi()"><span style="font-family: georgia, garamond, serif; font-size: 16px; font-style: italic; font-weight: bold;">BI</span></button>
+        <button onclick="bb()"><span style="color: rgb(255, 255, 255); font-size: 24px; -webkit-text-stroke: 2px rgb(0, 0, 0);">Big-B</span></button>
+        <button onclick="stick()"><span style="font-family: 'Courier New', monospace; overflow: hidden; white-space: nowrap; border-right: 1px solid #000; animation: typing 3s steps(30) infinite, blink-caret 0.5s step-end infinite;">stick</span></button>        
+        <button onclick="shadow()"><span style="font-size: 36px; color: black; text-shadow: black 3px 3px 5px;">Shadow</span><br></button>
+        <button ondblclick="favor()"><span style="font-family: 'Rockwell', serif;">nnnnn</span><br></button>
+        <button ondblclick="rela()"><span style="font-family: 'Comic Sans MS', cursive, sans-serif;">HDY</span><br></button>
+        <button onclick="underlineText()"><font><u>Underline</u></font></button>
+        <button onclick="strikeThroughText()"><strike>Strike</strike></button>
+        <button onclick="addOutline()"> <font><span style="outline: rgb(0, 0, 0) solid 2px;">outline</span></font></button>
+        <button onclick="subscriptText()">Subscript</button>
+        <button onclick="superscriptText()">Superscript</button><br>
+        <button onclick="toggleLocalStorage()"><font color="#0936ec">save screen/off</font></button>
+        <button onclick="insertLink()">Insert Link</button>
+        <button onclick="lineBreak()">Line Break</button>
+        <button onclick="copyText()"><font color="#29fd0d">copy code and text</font></button>
+        <!----->
+       
+        <button onclick="markText()">Mark</button>
+        <input type="color" id="fontColor" onchange="changeFontColor()">
+        
+        <!----->
+        <div class="options">
+            <label for="fontSize">Font Size:</label>
+            <input type="text" id="fontSizeInput" placeholder="Enter font size">
+            <button onclick="changeTextSize()">Change Size</button>
+        </div>
+            <button onclick="undo()">Undo</button>
+            <button onclick="redo()">Redo</button>
+            
+<!-------------------------------------------------------------------------------------------------->
+<!-------------------------------------------------------------------------------------------------->
+<!-------------------------------------------------------------------------------------------------->
+<!-------------------------------------------------------------------------------------------------->
+    <button onclick="insertTable()">Insert Table</button>
+
+
+    <button onclick="downloadFile()">Download</button>
+<button onclick="downloadTableAsPNG()">Download as PNG</button>
+<select id="fileType">
+    <option value="html">html</option>
+    <option value="txt">txt</option>
+    <option value="png" style="text-decoration: line-through;">png</option>
+    <option value="jpg" style="text-decoration: line-through;">jpg</option>
+</select> 
+
+
+<button onclick="openMenu()">Open Menu</button>
+<button onclick="openHelpDialog()">Open Help</button>
+<dialog id="helpDialog">
+    <iframe src="help.html" frameborder="0" width="99%" height="500px"></iframe>
+    <button onclick="closeHelpDialog()">Close</button>
+</dialog>
+<div class="options">
+    <label for="textAlignment">Text Alignment:</label>
+    <select id="textAlignment" onchange="changeTextAlignment()">
+        <option value="left">Left</option>
+        <option value="center">Center</option>
+        <option value="right">Right</option>
+        <option value="justify">Justify</option>
+    </select>
+    <button onclick="insertList('ul')">Insert Unordered List</button>
+    <button onclick="insertList('ol')">Insert Ordered List</button>
+</div>
+
+
+
+
+<script src="script.js"></script>
+<script src="storage.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <script src="menu/menu.js"></script> <!-- Add this line -->
+    <script src="menu/background.js"></script>
+<br>
+<script>
+function openHelpDialog() {
+    document.getElementById("helpDialog").showModal();
+}
+
+function closeHelpDialog() {
+    document.getElementById("helpDialog").close();
+}
+
+function openMenu() {
+    // Open menu.html as a child window
+    window.menuWindow = window.open('menu.html', 'menuWindow', 'width=400,height=400');
+}
+</script>
+<script src="main.js"></script>
+<script src="separated.js"></script>
+  <p>png and jpg is not working use "save as png"</p>
+  <br><br>
+</body>
+</html>
+
+
