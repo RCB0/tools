@@ -1,0 +1,16 @@
+.l {
+    display: inline-block;
+    padding: 10px 20px;
+    text-decoration: none;
+    background-color: #3498db; /* Choose your desired background color */
+    color: #fff; /* Choose your desired text color */
+    border: 1px solid #3498db; /* Choose your desired border color */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.l:hover {
+    background-color: #2980b9; /* Change the background color on hover */
+    border: 1px solid #2980b9; /* Change the border color on hover */
+}

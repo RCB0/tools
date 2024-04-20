@@ -1,0 +1,81 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    margin: 0;
+
+}
+
+#content {
+    border: 1px solid #ccc;
+    padding: 10px;
+    min-height: 200px;
+    margin-bottom: 10px;
+    width: 90%;
+    max-width: 600px;
+    overflow: auto;
+}
+
+.options,
+.toolbar {
+    margin-bottom: 10px;
+}
+
+button {
+    padding: 8px 12px;
+    margin: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    border: 1px solid #3498db;
+    color: #fff;
+    background-color: #3498db;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+input[type="color"] {
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+select,
+input[type="color"] {
+    margin: 5px;
+}
+
+.cickable{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    outline: 1px solid black;
+    width: 559px;
+    height: auto;
+}
+
+.Aa {
+    text-decoration: none;
+    color: #3498db;
+    background-color: #fff;
+    padding: 10px 20px;
+    border: 1px solid #3498db;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.Aa:hover {
+    background-color: #3498db;
+    color: #fff;
+    cursor: pointer;
+}
