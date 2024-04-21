@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hard lvl 3</title>
+    <link rel="stylesheet" href="../styles-css/body.css">
+    <link rel="stylesheet" href="../styles-css/buttons.css">
+    <link rel="stylesheet" href="../styles-css/fonts.css">
+    <link rel="stylesheet" href="../styles-css/input.css">
+    
+</head>
+<body>
+  
+    <div class="container">
+        <h1>Bible Trivia Game</h1><br>
+        <p style="color: rgb(0, 174, 255);">Test your knowledge about the Bible with these questions!</p>
+        <div id="question-container">
+          <h2 id="question" class="q"></h2>
+          <div id="options"></div>
+          <hr>
+          <div class="button-container">
+            <button id="back-button" class="button">Back</button>
+            <button id="next-button" class="button">Next Question</button>
+          </div>
+          <p>difficulty:hard</p><br><br>
+          <a href="../index.html" class="a">home</a>
+          
+          <a href="../game-html/easy.html" class="a">easy</a>
+          <a href="../game-html/normal.html" class="a">normal</a>
+          </div>
+        <div id="game-over" style="display: none;">
+          <p id="final-score"></p>
+          <button id="play-again-button">Play Again</button>
+        </div>
+        <br>
+          <br><br>
+          <div id="progress">
+            <div id="bar"></div>
+          </div>
+        </div>
+      
+        
+        <script src="../js/progres_bar.js"></script>
+        <script src="../js/buttons.js"></script>
+        <script src="../js/win.js"></script>
+        <script src="../js/storage.js"></script>
+        <!--h(hard) i want 2 and 3 will be disabled if the player did not click the yes yet when the user finish level 1 and son -->
+      
+       
+  <!-- Level Indicator -->
+<div id="level-indicator">Level: 3</div>
+
+<!-- Level 1 -->
+
+
+<script>
+  // Define your level 1 questions array
+const level1Questions = [
+{
+        question: "What is the name of the mountain where Jesus delivered the Sermon on the Mount?",
+        options: ["Mount Zion", "Mount Tabor", "Mount Carmel", "Mount Sinai"],
+        answer: 1
+    },
+    {
+        question: "Who wrote most of the Psalms in the Bible?",
+        options: ["David", "Solomon", "Asaph", "Moses"],
+        answer: 0
+    },    
+    {
+        question: "What is the name of the mountain where Moses received the Ten Commandments?",
+        options: ["Mount Zion", "Mount Moriah", "Mount Nebo", "Mount Sinai"],
+        answer: 3
+    },
+    {
+        question: "Who was the first man created according to the Bible?",
+        options: ["Adam", "Abraham", "Noah", "Moses"],
+        answer: 0
+    },
+    {
+        question: "Who was the father of Isaac?",
+        options: ["Abraham", "Jacob", "David", "Moses"],
+        answer: 0
+    },
+    {
+        question: "Which book of the Bible contains the story of the prodigal son?",
+        options: ["Genesis", "Exodus", "Matthew", "Luke"],
+        answer: 3
+    },
+    {
+        question: "What was the name of the woman who became queen after Esther?",
+        options: ["Ruth", "Deborah", "Hannah", "Athaliah"],
+        answer: 3
+    },
+    {
+        question: "Who was the prophet that confronted Ahab and Jezebel?",
+        options: ["Elijah", "Isaiah", "Jeremiah", "Ezekiel"],
+        answer: 0
+    },
+    {
+        question: "Which disciple is often referred to as 'the disciple whom Jesus loved'?",
+        options: ["Peter", "John", "James", "Andrew"],
+        answer: 1
+    },
+    {
+        question: "Who was the father of King Solomon?",
+        options: ["David", "Solomon", "Saul", "Rehoboam"],
+        answer: 0
+    },
+    {
+        question: "What was the name of the sea that Jesus calmed during a storm?",
+        options: ["Sea of Galilee", "Dead Sea", "Mediterranean Sea", "Red Sea"],
+        answer: 0
+    },
+    {
+        question: "Who was the disciple that Jesus referred to as 'the rock' upon which he would build his church?",
+        options: ["Peter", "John", "James", "Andrew"],
+        answer: 0
+    },
+    
+      {
+        question: "What was the first miracle of Jesus?",
+        options: ["Feeding the 5000", "Turning water into wine", "Healing a blind man", "Walking on water"],
+        answer: 1
+      },
+      
+      {
+        question: "How many days does it take to create the earth?",
+        options: ["8", "10", "7", "6"],
+        answer: 2
+      },
+      {
+        question: "Which disciple is known as the 'son of thunder'?",
+        options: ["Peter", "Andrew", "James", "John"],
+        answer: 3
+    },
+  
+  // Add more questions here
+  {
+    question: "Do you want to go home?",
+    options: ["Yes", "No"],
+    answer: null // There's no correct answer for this question
+  }
+];
+
+// Get references to HTML elements
+const questionElement = document.getElementById("question");
+const optionsElement = document.getElementById("options");
+const nextButton = document.getElementById("next-button");
+const playAgainButton = document.getElementById("play-again-button");
+const finalScoreElement = document.getElementById("final-score");
+const gameOverElement = document.getElementById("game-over");
+
+let currentQuestionIndex = 0;
+let score = 0;
+
+// Function to display a question
+function showQuestion(question) {
+  questionElement.textContent = question.question;
+  optionsElement.innerHTML = ""; // Clear previous options
+
+  // Create buttons for each option
+  for (let i = 0; i < question.options.length; i++) {
+    const button = document.createElement("button");
+    button.textContent = question.options[i];
+    button.addEventListener("click", () => checkAnswer(i));
+    optionsElement.appendChild(button);
+  }
+}
+
+// Function to check the selected answer
+function checkAnswer(selectedIndex) {
+  const currentQuestion = level1Questions[currentQuestionIndex];
+  if (selectedIndex === currentQuestion.answer) {
+    alert("Correct!");
+    score++;
+  } else {
+    alert("Incorrect. The correct answer is: " + currentQuestion.options[currentQuestion.answer]);
+  }
+  currentQuestionIndex++;
+  updateScore();
+  if (currentQuestionIndex < level1Questions.length - 1) {
+    showQuestion(level1Questions[currentQuestionIndex]);
+  } else {
+    showContinueQuestion();
+  }
+}
+
+// Function to display the "Do you want to continue?" question
+function showContinueQuestion() {
+  questionElement.textContent = "Do you want to go home?";
+  optionsElement.innerHTML = ""; // Clear previous options
+
+  // Create buttons for Yes and No
+  const yesButton = document.createElement("button");
+  yesButton.textContent = "Yes";
+  yesButton.addEventListener("click", () => {
+    // Redirect to hard_lvl_2.html or perform any other action if needed
+    window.location.href = "../index.html";
+  });
+  optionsElement.appendChild(yesButton);
+
+  const noButton = document.createElement("button");
+  noButton.textContent = "No";
+  noButton.addEventListener("click", () => {
+    // Handle No button action if needed
+  });
+  optionsElement.appendChild(noButton);
+}
+
+// Function to update the score display
+function updateScore() {
+  finalScoreElement.textContent = "Final Score: " + score + " out of " + (level1Questions.length - 1);
+}
+
+// Function to display the game over screen
+function showGameOver() {
+  questionElement.innerHTML = '<img src="../images/win.png" alt="Congratulations!" style="width: 200px; height: 200px;">';
+  optionsElement.innerHTML = "";
+  nextButton.style.display = "none";
+  gameOverElement.style.display = "block";
+}
+
+// Function to reset the game
+function playAgain() {
+  currentQuestionIndex = 0;
+  score = 0;
+  showQuestion(level1Questions[currentQuestionIndex]);
+  nextButton.style.display = "block";
+  gameOverElement.style.display = "none";
+  updateScore();
+}
+
+// Event listeners for next question and play again buttons
+nextButton.addEventListener("click", () => showQuestion(level1Questions[currentQuestionIndex]));
+playAgainButton.addEventListener("click", playAgain);
+
+// Display the first question when the page loads
+showQuestion(level1Questions[currentQuestionIndex]);
+updateScore();
+
+</script>
+</body>
+</html>
