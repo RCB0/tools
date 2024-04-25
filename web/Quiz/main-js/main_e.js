@@ -2,7 +2,7 @@ const questions = [
   {
     question: "Who built the ark?",
     options: ["Noah", "Moses", "David", "Abraham"],
-    answer: "0"
+    answer: 00
   },
   {
    question: "Who defeated Goliath?",
@@ -22,7 +22,7 @@ const questions = [
   {
     question: "Who built the ark?",
     options: ["David", "Moses", "Noah", "Abraham"],
-    answer: "2"
+    answer: 2
   },
   {
     question: "Who created the world?",
