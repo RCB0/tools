@@ -2,15 +2,13 @@
  
 .icon {
     font-size: 50px;
-    color: #333;
+    color: #000000;
     margin: 20px;
     cursor: pointer;
     transition: color 0.3s;
 }
 
-.icon:hover {
-    color: #007BFF;
-}
+
 body {
     font-family: Arial, sans-serif;
     display: flex;
