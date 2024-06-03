@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Function Generator</title>
+    <style>
+        .editor {
+            border: 1px solid #ccc;
+            padding: 10px;
+            min-height: 200px;
+            margin-bottom: 20px;
+            font-family: Arial, sans-serif;
+        }
+        .inputs, .buttons {
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px;
+            font-weight: bold;
+        }
+        input {
+            padding: 5px;
+            margin-right: 5px;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+    </style>
+    <script>
+        function updateFunctionCode() {
+            let functionName = document.getElementById('functionName').value;
+            let tag = document.getElementById('tag').value;
+
+            let functionCode = `
+
+            function ${tag}() {
+            var element = document.getElementById("${tag}}");
+            if (element.style.display === "none" || element.style.display === "") {
+                element.style.display = "block";
+            } else {
+                element.style.display = "none";
+            }
+        }      
+
+  
+            
+            `;
+
+            // Display the generated function code
+            document.getElementById('generatedFunction').textContent = functionCode;
+
+            // Create the function dynamically and assign it to the window object
+            window[tag] = new Function(`
+            function ${tag}}() {
+            var element = document.getElementById("${tag}}");
+            if (element.style.display === "none" || element.style.display === "") {
+                element.style.display = "block";
+            } else {
+                element.style.display = "none";
+            }
+        }      `);
+        }
+
+        
+
+
+    </script>
+
+</head>
+<body>
+    <br><br><br><br>
+    <center>
+        <div class="inputs">
+            <label for="functionName" style="display: none;">Function Name:</label>
+            <input type="text" id="functionName" placeholder="Enter function name" oninput="updateFunctionCode()" style="display: none;">
+            <label for="tag">Tag:</label>
+            <input type="text" id="tag" placeholder="Enter tag name" oninput="updateFunctionCode()">
+        </div>
+        <pre id="generatedFunction">
+            <!-- The generated function code will be displayed here -->
+        </pre>
+    </center>
+</body>
+</html>
+
+
+
