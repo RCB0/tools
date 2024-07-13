@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en" id="noSelectText">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Tool-phone</title>
+    <link rel="stylesheet" href="s.css">
+   
+    <br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <link rel="icon"  href="https://rcb0.github.io/logo/reyn.png" type="image/x-icon"/>
+</head>
+<body>
+
+ <div class="outline">
+    <center><img src="https://rcb0.github.io/logo/reyn.png" alt=""></center>
+<br><br>
+    <center>
+        <div class="editorsarea">
+            <br>
+            <center>
+              
+            </center> <a" href="../../index.html"><small><i class="fas fa-home icon" style="width: 2px;"></i></small></a><br><br>
+            <textarea name="edit's area" id="textareaContent" cols="50" rows="20" placeholder="edit your html web" oninput="updateDiv()"></textarea>
+            <button onclick="updateTextArea()">Update</button><br>
+           <button>
+            <input type="file" id="htmlFileInput" accept=".html" style="display: block; display: none;">
+            <label for="htmlFileInput">Import HTML</label>
+           </button>
+            <!--------------------------------------------------------------------------------------->
+            <button>
+                <input type="file" id="imageFileInput" accept="image/*"  style="display: block; display: none;">
+            <label for="imageFileInput">Import Image</label>
+            </button>
+        </div>
+    </center>
+    <!--------------------------------------------------------------------------------------->
+    <div class="outerC">
+       
+        <br>
+        <br>
+        <div id="content" contenteditable="true" aria-placeholder="ffffff" ondrop="handleDrop(event)" ondragover="allowDrop(event)">
+           
+           
+         <span class="">type here</span>
+            
+         </div>
+    </div>
+  <center>
+   
+ <!--------------------------------------------------------------------------------------->
+     <!--
+        i want png is dragable and dropable
+     -->
+ 
+    <!--
+<div><font size="6"><b>Welcom to Reyn's Website</b></font></div><div><b>Visit&nbsp;<a href="https://www.facebook.com/profile.php?id=100093510621665"><font color="#0101f9">Reyn</font></a>&nbsp;on <font color="#005cb3"><u>Facebook</u></font></b></div><div><b><font color="#005cb3"><u><br></u></font></b></div><div><b><font color="#005cb3"><u><br></u></font></b></div>
+    -->
+    <br>
+    <div class="c">
+    <div class="clickable">
+        <button onclick="custom()" style="background-color: limegreen;">custom</button>
+<div class="custom" id="custom">
+    <button onclick="bi()"><span style="font-family: georgia, garamond, serif; font-size: 16px; font-style: italic; font-weight: bold;">BI</span></button>
+        <button onclick="bb()"><span style="color: rgb(255, 255, 255); font-size: 24px; -webkit-text-stroke: 2px rgb(0, 0, 0);">B</span></button>
+        <button onclick="stick()"><span style="font-family: 'Courier New', monospace; overflow: hidden; white-space: nowrap; border-right: 1px solid #000; animation: typing 3s steps(30) infinite, blink-caret 0.5s step-end infinite;">|</span></button>
+        <button onclick="shadow()"><span style="font-size: 36px; color: black; text-shadow: black 3px 3px 5px; font-size: small;">b</span><br></button>
+        <button onclick="rela()"><span style="font-family: 'Comic Sans MS', cursive, sans-serif;">A</span><br></button>
+        <button onclick="addOutline()"> <font><span style="outline: rgb(0, 0, 0) solid 2px;">outline</span></font></button>
+        <button onclick="insertHomeIcon()"><center><i class="fas fa-home icon" style="font-size: small;"></i></center></button>
+        <button onclick="mail()"><center><i class="fas fa-envelope icon" style="font-size: small;"></i></center></button>
+        <button onclick="info()"><center><i class="fas fa-info-circle icon" style="font-size: small;"></i></center></button>      
+        <button onclick="back()"><center><i class="" style="font-size: small;"></i></center></button>
+       
+</div>
+<button onclick="headings()"style="background-color: limegreen;">headings</button>
+<div class="heading" id="headings">
+    <button onclick="h1()">h1</button>
+    <button onclick="h2()">h2</button>
+    <button onclick="h3()">h3</button>
+    <button onclick="h4()">h4</button>
+    <button onclick="h5()">h5</button>
+    <button onclick="h6()">h6</button>
+</div>
+<button onclick="inputs()"style="background-color: limegreen;">inputs</button>
+<div class="inputs" id="inputs">
+    <button onclick="txt()">Text</button>
+    <button onclick="mail()">Email</button>
+    <button onclick="number()">Number</button>
+    <button onclick="password()">Password</button>
+    <button onclick="img()">Image</button>
+    <button onclick="file()">File</button>
+    <button onclick="date()">Date</button>
+    <button onclick="time()">Time</button>
+    <button onclick="color()">Color</button>
+    <button onclick="radio()">Radio</button>
+    <button onclick="cb()">Checkbox</button>
+</div>
+<button onclick="tags()"style="background-color: limegreen;">tags</button>
+       <div class="tags" id="tags">
+        <button onclick="boldText()"><b>B</b></button>
+        <button onclick="italicText()"><span style="font-family: georgia, garamond, serif; font-size: 16px; font-style: italic;">I</span><br></button>
+        <button onclick="underlineText()"><font><u>Un</u></font></button>
+        <button onclick="del()"><strike>Del</strike></button>
+        <button onclick="insertLink()">Insert Link</button>
+        <button onclick="lb()">(br) Line Break</button>
+    
+        <button onclick="insertTable()">Insert Table</button>
+        <button onclick="p()">p</button>
+        <button onclick="q()"><q id="q">q</q></button>
+        <button onclick="li()"><li>li</li></button>
+        <button onclick="em()"><em>em</em></button>
+        <button onclick="dtl()"><details>hidden secrete</details></button>
+        <button onclick="dfn()" ><dfn>dfn</dfn></button>
+        <button onclick="div()" ><div>div</div></button>
+        <button onclick="fset()"><fieldset>fielset</fieldset></button>
+        <button onclick="footer()"><footer>footer</footer></button>
+        <button onclick="form()"><form>form</form></button>
+        <button onclick="btn()">button</button>
+        <button onclick="hr()">hr<hr></button>
+        <button onclick="hrhr()"><hr><hr></button>
+        <button onclick="lgd()"><legend>legend</legend></button>
+        <button onclick="center()"><center>center</center></button>
+        <button onclick="cite()" ><cite>cite</cite></button>
+        <button onclick="code()"><code>code</code></button>
+        <button onclick="pre()"><code>pre</code></button>
+        <button onclick="varc()"><var>var</var></button>
+        <button onclick="strong()">strong</button>
+        <button onclick="select()">select</button>
+        <button onclick="option()">option</button>
+        <button onclick="dialog()">dialog</button>
+     <button onclick="insertList('ul')">UL</button>
+        <button onclick="insertList('ol')">OL</button>
+       </div>
+
+        <button onclick="undo()">Undo</button>
+        <button onclick="redo()">Redo</button>
+        <div class="options">
+            <label for="textAlignment">Text Alignment:</label>
+            <select id="textAlignment" onchange="changeTextAlignment()">
+                <option value="left">Left</option>
+                <option value="center">Center</option>
+                <option value="right">Right</option>
+                <option value="justify">Justify</option>
+            </select>
+        </div>
+
+        <button onclick="openHelpDialog()">Open Help</button>
+        <dialog id="helpDialog">
+            <iframe src="help.html" frameborder="0" width="99%" height="500px"></iframe>
+            <button onclick="closeHelpDialog()">Close</button>
+        </dialog>
+        <button onclick="local()" id="s" style="color: red; font-weight: bold; ">RED</button><br>
+        <button onclick="markText()">Mark</button>
+        <input type="color" id="fontColor" onchange="changeFontColor()"><br>
+        <div class="options" style="display: block;">
+
+            <button onclick="downloadContentAsPNG()">Download as PNG</button>
+            <button onclick="downloadFile()">Download</button> 
+            
+            <select id="fileType">
+                <option value="html">html</option>
+                <option value="txt">txt</option>
+            </select><br>
+
+            <label for="fontSize">Font Size:</label>
+            <input type="text" id="fontSizeInput" placeholder="Enter font size">
+            <button onclick="changeTextSize()">Change Size</button>
+            <button onclick="copyText()"><font color="#29fd0d">copy code</font></button>
+
+            <button onclick="lt()"><span style="font-family: Arial Black, sans-serif; color: rgb(255, 255, 255); text-shadow: rgb(255, 255, 255) 0px 0px 10px, rgb(255, 255, 255) 0px 0px 20px, rgb(255, 255, 255) 0px 0px 30px, rgb(0, 255, 255) 0px 0px 40px, rgb(0, 255, 255) 0px 0px 70px, rgb(0, 255, 255) 0px 0px 80px, rgb(0, 255, 255) 0px 0px 100px, rgb(0, 255, 255) 0px 0px 150px; animation: 1.5s ease 0s infinite alternate none running flicker;"><font size="2">Light Show</font></span><br></button>
+        </div>
+    </div>
+</div>
+
+</div>
+
+ 
+  </center>
+
+</div>
+
+<!--JAVA SCRIPT------------------------------------------------------->
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
+<script src="js/script.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/main.js"></script>
+<script src="js/separated.js"></script>
+<script src="js/import.js"></script>
+<script src="js/templates.js"></script>
+  <br><br><br><br><br>
+  <script src="code-space.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</body>
+</html>
+

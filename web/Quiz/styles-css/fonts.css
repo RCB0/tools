@@ -1,0 +1,35 @@
+h1 {
+  color: #333;
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+p {
+  color: rgb(0, 174, 255);
+  margin-bottom: 20px;
+}
+
+#final-score {
+  font-size: 1.2em;
+  margin: 20px 0;
+}
+/* Add this to your styles-css/links.css file or include it in your existing CSS */
+
+a {
+  display: inline-block;
+  text-decoration: none;
+  color: #3498db;
+  background-color: #fff;
+  padding: 10px 20px;
+  border: 1px solid #3498db;
+  border-radius: 5px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+a:hover {
+  background-color: #3498db;
+  color: #fff;
+}
+.q {
+  border: 1px solid black;
+}

@@ -1,0 +1,91 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+}
+
+.container {
+    display: flex;
+    width: 80%;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.styling-options {
+    padding: 20px;
+    width: 20%;
+    background-color: #3498db;
+    color: #fff;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: auto;
+}
+
+.styling-options button, .styling-options input {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #3498db;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.styling-options button:hover, .styling-options input:hover {
+    background-color: #295582;
+    color: #fff;
+}
+
+.editing-area {
+    padding: 20px;
+    width: 80%;
+    box-sizing: border-box;
+}
+
+.copy-code {
+    background-color: #2ecc71;
+    color: #fff;
+}
+
+.copy-code:hover {
+    background-color: #27ae60;
+}
+#dragText {
+    outline: none;
+}
+#dragText {
+    outline: none;
+}
+
+.draggable {
+    position: absolute;
+    cursor: grab;
+}
+input {
+    border: 1px solid white;
+}
+a {
+    display: inline-block;
+    text-decoration: none;
+    color: #3498db;
+    background-color: #fff;
+    padding: 10px 20px;
+    border: 1px solid #3498db;
+    border-radius: 5px;
+    margin-bottom: 20px; /* Add margin to separate link from the rest */
+    transition: background-color 0.3s, color 0.3s;
+}
+
+a:hover {
+    background-color: #3498db;
+    color: #fff;
+}

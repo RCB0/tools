@@ -1,0 +1,52 @@
+/* CSS styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+.game {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.btn {
+    margin-top: 20px;
+}
+
+.btn button {
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+
+}
+#shop {
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    border: none;
+    margin-top: 20px;
+}
+sup {
+    color: black;
+    font-weight: bold;
+    background-color: white;
+    border-radius: 50%;
+    padding: 0 3px;
+    display: inline-block;
+    text-align: center;
+}
+#player,
+#shop,
+#close,
+#c,
+#paush,
+#coin {
+    font-size: 3em; /* Adjust the value as needed to make it bigger */
+}
+

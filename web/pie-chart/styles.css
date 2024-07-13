@@ -1,0 +1,95 @@
+/* styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+}
+
+div {
+    margin-bottom: 20px;
+}
+
+#colorInputs {
+    display: flex;
+    gap: 10px;
+}
+
+button {
+    padding: 10px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+a {
+    text-decoration: none;
+    color: #3498db;
+    margin-right: 10px;
+}
+
+canvas {
+    max-width: 55%;
+    height: auto;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+img {
+    width: 50px;
+    height: 50px;
+    margin-top: 10px;
+}
+
+/* Responsive Styles */
+@media only screen and (max-width: 600px) {
+    /* Adjust styles for small screens */
+    input {
+        font-size: 14px;
+    }
+
+    button {
+        font-size: 14px;
+    }
+
+    canvas {
+        max-width: 100%;
+    }
+}
+
+/* Add more media queries and styles as needed for other screen sizes */
+.dialog {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.dialog p {
+    margin-bottom: 10px;
+}

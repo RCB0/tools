@@ -1,0 +1,58 @@
+/* Default styles for larger screens */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f4f4f4; /* Background color */
+}
+
+.converter {
+    text-align: center;
+    background-color: #fff; /* Form background color */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Box shadow for a subtle effect */
+    max-width: 600px; /* Limit the width for larger screens */
+    width: 100%; /* Make sure it's 100% width within the limit */
+    margin: 0 auto; /* Center the converter horizontally */
+}
+
+textarea {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc; /* Border for textareas */
+    border-radius: 4px;
+}
+
+button {
+    padding: 10px;
+    cursor: pointer;
+    background-color: #4caf50; /* Button background color */
+    color: #fff; /* Button text color */
+    border: none;
+    border-radius: 4px;
+}
+
+button:hover {
+    background-color: #45a049; /* Button background color on hover */
+}
+
+/* Media query for smaller screens */
+@media (max-width: 600px) {
+    .converter {
+        padding: 10px; /* Adjust padding for smaller screens */
+    }
+
+    textarea {
+        margin-bottom: 5px; /* Adjust margin for smaller screens */
+    }
+
+    button {
+        padding: 8px; /* Adjust padding for smaller screens */
+    }
+}

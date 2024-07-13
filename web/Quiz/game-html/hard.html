@@ -1,0 +1,69 @@
+<br><br><br><br>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hard</title>
+    <link rel="stylesheet" href="../styles-css/body.css">
+    <link rel="stylesheet" href="../styles-css/buttons.css">
+    <link rel="stylesheet" href="../styles-css/fonts.css">
+    <link rel="stylesheet" href="../styles-css/input.css">
+    
+</head>
+<body>
+  
+    <div class="container">
+        <h1>Bible Trivia Game</h1><br>
+        <p style="color: rgb(0, 174, 255);">Test your knowledge about the Bible with these questions!</p>
+        <div id="question-container">
+          <h2 id="question" class="q"></h2>
+          <div id="options"></div>
+          <hr>
+          <div class="button-container">
+            <button id="back-button" class="button">Back</button>
+            <button id="next-button" class="button">Next Question</button>
+          </div>
+          <p>difficulty:hard</p><br><br>
+          <a href="../index.html" class="a">home</a>
+          
+          <a href="../game-html/easy.html" class="a">easy</a>
+          <a href="../game-html/normal.html" class="a">normal</a>
+          </div>
+        <div id="game-over" style="display: none;">
+          <p id="final-score"></p>
+          <button id="play-again-button">Play Again</button>
+        </div>
+        <br>
+          <br><br>
+          <div id="progress">
+            <div id="bar"></div>
+          </div>
+        </div>
+      
+        
+        <script src="../js/progres_bar.js"></script>
+        <script src="../js/buttons.js"></script>
+        <script src="../js/win.js"></script>
+        <script src="../js/storage.js"></script>
+        <!--h(hard) i want 2 and 3 will be disabled if the player did not click the yes yet when the user finish level 1 and son 
+        
+          {
+  question: "Do you want to continue?",
+  options: ["Yes", "No"],
+  answer: null // There's no correct answer for this question
+}
+        -->
+      
+       
+  <!-- Level Indicator -->
+<div id="level-indicator">Level: 1</div>
+
+<!-- Level 1 -->
+<script id="main-h-script" src="../main-js/main_h.js"></script>
+
+
+</body>
+</html>
+
+ 

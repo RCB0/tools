@@ -1,0 +1,84 @@
+/* styles.css */
+
+body {
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+input[type="text"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+textarea {
+    width: 80%;
+    margin: 10px auto;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    display: block;
+    margin: 10px auto;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #0056b3;
+}
+
+.output {
+    text-align: left;
+    margin: 20px auto;
+    padding: 20px;
+    width: 80%;
+    line-height: 1.6; /* Improved line height for better readability */
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1, p {
+    text-align: center;
+    color: #007bff;
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-top: 10px;
+}
+
+#paragraphSpacing {
+    width: 60px;
+}
+/* Apply styles to all images */
+img {
+    max-width: 77%; /* Make sure images don't exceed their container's width */
+    
+    display: block; /* Remove extra space below images when using inline-block */
+    margin: 0 auto; /* Center images within their container */
+}
+
+/* Example: Apply a border to images with the class 'bordered' */
+img.bordered {
+    border: 2px solid #333; /* Add a 2px solid border with a dark gray color */
+}
+
+/* Example: Apply rounded corners to images with the class 'rounded' */
+img.rounded {
+    border-radius: 10px; /* Add a 10px border-radius for rounded corners */
+}
+
+/* Example: Apply a shadow to images with the class 'shadowed' */
+img.shadowed {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow effect */
+}

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pixel Art Editor</title> 
+<a href="../../index.html">home</a>
+<style>
+body {
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  #pixelCanvas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(20px, 1fr));
+    justify-content: center;
+    gap: 1px;
+    margin-top: 10px;
+  }
+  .pixel {
+    width: 21px;
+    height: 21px;
+    background-color: #fff;
+    border: 1px solid #3f3c3c;
+    cursor: pointer;
+  }
+  .gridOn .pixel {
+    border: none;
+  }
+  button {
+    background-color: #f2f2f2;
+    border: 1px solid #dcdcdc;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 5px;
+    border-radius: 5px;
+    outline: none;
+  }
+  button:hover {
+    background-color: #e8e8e8;
+  }
+  button:active {
+    background-color: #dcdcdc;
+  }
+  input[type="number"],
+  input[type="color"] {
+    padding: 5px;
+    border: 1px solid #dcdcdc;
+    margin: 5px;
+    vertical-align: middle;
+  }
+  input[type="color"] {
+    height: 30px;
+  }
+  #toolSelection button {
+    width: 90px;
+  }
+  a {
+    display: inline-block;
+    text-decoration: none;
+    color: #3498db;
+    background-color: #fff;
+    padding: 10px 20px;
+    border: 1px solid #3498db;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  a:hover {
+    background-color: #3498db;
+    color: #fff;
+  }
+  /* Media query for smaller screens */
+  @media (max-width: 600px) {
+    .pixel {
+      width: 10px;
+      height: 10px;
+    }
+    input[type="number"],
+    input[type="color"] {
+      width: 50px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div id="colorPicker">
+  <label for="selectedColor">Choose Color:</label>
+  <input type="color" id="selectedColor" value="#000000" />
+  <button onclick="fillAll()">Fill All</button>
+  <button onclick="clearAll()">Clear All</button>
+  <button id="toggleGrid">Toggle Grid</button>
+  <!-- ... existing HTML ... -->
+
+<button onclick="saveArt()">Save Art</button>
+<button onclick="loadArt()">Load Art</button>
+<button onclick="exportArt()">Export Art</button>
+<button onclick="undo()">Undo</button>
+<button onclick="redo()">Redo</button>
+<!-- ... existing HTML ... -->
+
+<div id="toolSelection">
+  <button id="pencilTool" onclick="selectTool('pencil')">Pencil</button>
+  <button id="eraserTool" onclick="selectTool('eraser')">Eraser</button>
+  <button id="fillBucketTool" onclick="selectTool('fillBucket')">Fill Bucket</button>
+</div>
+
+<!-- ... existing HTML ... -->
+<label for="inputRows">Rows:</label>
+<input type="number" id="inputRows" value="32" min="1" max="100">
+<label for="inputColumns">Columns:</label>
+<input type="number" id="inputColumns" value="32" min="1" max="100">
+<button onclick="updateGridSize()">Update Grid Size</button>
+
+<!-- ... existing HTML ... -->
+
+  
+</div>
+
+<div id="pixelCanvas"></div>
+
+<script src="px.js"></script>
+<style>
+  
+  .i {
+    padding: 8px 16px; /* Add padding to the button */
+    background-color: #1e9422; /* Set a green background color */
+    color: white; /* Set text color to white */
+    border: none; /* Remove border */
+    border-radius: 10px; /* Add some border radius for rounded corners */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    transition: background-color 0.3s, transform 0.3s; /* Add smooth transition effect for background color and transform */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Add shadow to create a 3D effect */
+}
+
+/* Change button color and transform on hover */
+.i:hover {
+    background-color: #39aa3d; /* Darken the background color on hover */
+    transform: translateY(-2px); /* Move the button slightly up on hover for a pressed effect */
+}
+</style>
+<h1 class="i"></h1>
+</body>
+</html>

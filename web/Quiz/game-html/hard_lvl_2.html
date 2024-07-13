@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hard lvl 2</title>
+    <link rel="stylesheet" href="../styles-css/body.css">
+    <link rel="stylesheet" href="../styles-css/buttons.css">
+    <link rel="stylesheet" href="../styles-css/fonts.css">
+    <link rel="stylesheet" href="../styles-css/input.css">
+    
+</head>
+<body>
+  
+    <div class="container">
+        <h1>Bible Trivia Game</h1><br>
+        <p style="color: rgb(0, 174, 255);">Test your knowledge about the Bible with these questions!</p>
+        <div id="question-container">
+          <h2 id="question" class="q"></h2>
+          <div id="options"></div>
+          <hr>
+          <div class="button-container">
+            <button id="back-button" class="button">Back</button>
+            <button id="next-button" class="button">Next Question</button>
+          </div>
+          <p>difficulty:hard</p><br><br>
+          <a href="../index.html" class="a">home</a>
+          
+          <a href="../game-html/easy.html" class="a">easy</a>
+          <a href="../game-html/normal.html" class="a">normal</a>
+          </div>
+        <div id="game-over" style="display: none;">
+          <p id="final-score"></p>
+          <button id="play-again-button">Play Again</button>
+        </div>
+        <br>
+          <br><br>
+          <div id="progress">
+            <div id="bar"></div>
+          </div>
+        </div>
+      
+        
+        <script src="../js/progres_bar.js"></script>
+        <script src="../js/buttons.js"></script>
+        <script src="../js/win.js"></script>
+        <script src="../js/storage.js"></script>
+        <!--h(hard) i want 2 and 3 will be disabled if the player did not click the yes yet when the user finish level 1 and son -->
+      
+       
+  <!-- Level Indicator -->
+<div id="level-indicator">Level: 2</div>
+
+<!-- Level 1 -->
+
+
+<script>
+ // Define your level 1 questions array
+const level1Questions = [
+{
+        question: "Who was the first High Priest of Israel?",
+        options: ["Aaron", "Moses", "Eli", "Samuel"],
+        answer: 0
+    },
+    {
+        question: "What was the name of the city where Jesus performed his first miracle of turning water into wine?",
+        options: ["Jericho", "Cana", "Bethlehem", "Nazareth"],
+        answer: 1
+    },
+
+    {
+        question: "Who was the king of Israel when Jesus was born?",
+        options: ["Herod", "Pilate", "Caesar", "Augustus"],
+        answer: 0
+    },
+    {
+        question: "What was the name of the disciple who doubted Jesus' resurrection until he saw him?",
+        options: ["Peter", "John", "Thomas", "Andrew"],
+        answer: 2
+    },
+    {
+        question: "Who was the Roman governor who sentenced Jesus to death?",
+        options: ["Herod", "Pilate", "Caesar", "Augustus"],
+        answer: 1
+    },
+    {
+        question: "Which book of the Bible contains the story of the exodus of the Israelites from Egypt?",
+        options: ["Exodus", "Genesis", "Leviticus", "Numbers"],
+        answer: 0
+    },
+    {
+        question: "Who was the prophet who confronted King David about his sin with Bathsheba?",
+        options: ["Nathan", "Elijah", "Elisha", "Isaiah"],
+        answer: 0
+    },
+    {
+        question: "What was the name of the disciple who was known as the 'rock'?",
+        options: ["John", "Peter", "James", "Andrew"],
+        answer: 1
+    },
+    {
+        question: "What was the name of the man who carried Jesus' cross?",
+        options: ["Simon of Cyrene", "Barabbas", "Joseph of Arimathea", "Nicodemus"],
+        answer: 0
+    },
+    {
+        question: "Who was the king who decreed the decree to kill all male infants in Bethlehem in an attempt to kill Jesus?",
+        options: ["Herod", "Pilate", "Caesar", "Augustus"],
+        answer: 0
+    },
+    {
+        question: "Which disciple was known as the 'disciple whom Jesus loved'?",
+        options: ["Peter", "John", "James", "Andrew"],
+        answer: 1
+    },
+    {
+        question: "Who was the disciple who was a tax collector before following Jesus?",
+        options: ["Matthew", "Mark", "Luke", "John"],
+        answer: 0
+    },
+    {
+        question: "What was the name of the disciple who betrayed Jesus?",
+        options: ["Peter", "John", "Judas", "Thomas"],
+        answer: 2
+    },
+    {
+        question: "Who was the first king of Israel?",
+        options: ["Saul", "David", "Solomon", "Samuel"],
+        answer: 0
+    },
+    {
+        question: "What was the name of the mountain where Elijah confronted the prophets of Baal?",
+        options: ["Mount Zion", "Mount Sinai", "Mount Carmel", "Mount Moriah"],
+        answer: 2
+    },
+    {
+        question: "Who was known as the 'weeping prophet'?",
+        options: ["Isaiah", "Jeremiah", "Ezekiel", "Daniel"],
+        answer: 1
+    },
+    {
+        question: "Which disciple walked on water with Jesus but then doubted and began to sink?",
+        options: ["Peter", "John", "James", "Andrew"],
+        answer: 0
+    },
+    {
+        question: "Who was the father of John the Baptist?",
+        options: ["Zachariah", "Joseph", "Simeon", "Elijah"],
+        answer: 0
+    },
+    {
+        question: "What was the name of the city where Jesus was born?",
+        options: ["Nazareth", "Jerusalem", "Bethlehem", "Capernaum"],
+        answer: 2
+    },
+    {
+        question: "Which disciple asked Jesus to show them the Father?",
+        options: ["Peter", "John", "Philip", "Thomas"],
+        answer: 2
+    },
+  // Add more questions here
+  {
+    question: "Do you want to continue?",
+    options: ["Yes", "No"],
+    answer: null // There's no correct answer for this question
+  }
+];
+
+// Get references to HTML elements
+const questionElement = document.getElementById("question");
+const optionsElement = document.getElementById("options");
+const nextButton = document.getElementById("next-button");
+const playAgainButton = document.getElementById("play-again-button");
+const finalScoreElement = document.getElementById("final-score");
+const gameOverElement = document.getElementById("game-over");
+
+let currentQuestionIndex = 0;
+let score = 0;
+
+// Function to display a question
+function showQuestion(question) {
+  questionElement.textContent = question.question;
+  optionsElement.innerHTML = ""; // Clear previous options
+
+  // Create buttons for each option
+  for (let i = 0; i < question.options.length; i++) {
+    const button = document.createElement("button");
+    button.textContent = question.options[i];
+    button.addEventListener("click", () => checkAnswer(i));
+    optionsElement.appendChild(button);
+  }
+}
+
+// Function to check the selected answer
+function checkAnswer(selectedIndex) {
+  const currentQuestion = level1Questions[currentQuestionIndex];
+  if (selectedIndex === currentQuestion.answer) {
+    alert("Correct!");
+    score++;
+  } else {
+    alert("Incorrect. The correct answer is: " + currentQuestion.options[currentQuestion.answer]);
+  }
+  currentQuestionIndex++;
+  updateScore();
+  if (currentQuestionIndex < level1Questions.length - 1) {
+    showQuestion(level1Questions[currentQuestionIndex]);
+  } else {
+    showContinueQuestion();
+  }
+}
+
+// Function to display the "Do you want to continue?" question
+function showContinueQuestion() {
+  questionElement.textContent = "Do you want to continue?";
+  optionsElement.innerHTML = ""; // Clear previous options
+
+  // Create buttons for Yes and No
+  const yesButton = document.createElement("button");
+  yesButton.textContent = "Yes";
+  yesButton.addEventListener("click", () => {
+    // Redirect to hard_lvl_2.html or perform any other action if needed
+    window.location.href = "hard_lvl_3.html";
+  });
+  optionsElement.appendChild(yesButton);
+
+  const noButton = document.createElement("button");
+  noButton.textContent = "No";
+  noButton.addEventListener("click", () => {
+    // Handle No button action if needed
+  });
+  optionsElement.appendChild(noButton);
+}
+
+// Function to update the score display
+function updateScore() {
+  finalScoreElement.textContent = "Final Score: " + score + " out of " + (level1Questions.length - 1);
+}
+
+// Function to display the game over screen
+function showGameOver() {
+  questionElement.innerHTML = '<img src="../images/win.png" alt="Congratulations!" style="width: 200px; height: 200px;">';
+  optionsElement.innerHTML = "";
+  nextButton.style.display = "none";
+  gameOverElement.style.display = "block";
+}
+
+// Function to reset the game
+function playAgain() {
+  currentQuestionIndex = 0;
+  score = 0;
+  showQuestion(level1Questions[currentQuestionIndex]);
+  nextButton.style.display = "block";
+  gameOverElement.style.display = "none";
+  updateScore();
+}
+
+// Event listeners for next question and play again buttons
+nextButton.addEventListener("click", () => showQuestion(level1Questions[currentQuestionIndex]));
+playAgainButton.addEventListener("click", playAgain);
+
+// Display the first question when the page loads
+showQuestion(level1Questions[currentQuestionIndex]);
+updateScore();
+
+</script>
+</body>
+</html>
