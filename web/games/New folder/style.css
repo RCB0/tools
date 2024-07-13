@@ -1,0 +1,121 @@
+/* CSS styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+/* CSS styling */
+.game  {
+    text-align: center;
+    margin-top: 50px;
+    position: relative;
+    width: 600px; /* Adjust the width as needed */
+    height: 600px; /* Adjust the height as needed */
+    margin: 50px auto; /* Center the game container */
+    border: 5px solid #007bff; /* Border to prevent the rocket from going out */
+    background-color: white; /* Background color for the game area */
+    user-select: none; /* Prevent text selection */
+}
+
+/* Add this if you have other child elements where you want to prevent text selection */
+.gamel * {
+    user-select: none;
+    
+}
+html {
+    user-select: none; /* Prevent text selection */
+}
+.btn {
+    margin-top: 20px;
+}
+
+.btn button {
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#shop {
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    border: none;
+    margin-top: 20px;
+}
+
+sup {
+    color: black;
+    font-weight: bold;
+    background-color: white;
+    border-radius: 50%;
+    padding: 0 3px;
+    display: inline-block;
+    text-align: center;
+}
+
+#player,
+#shop,
+#close,
+#c,
+#paush,
+#coin {
+    font-size: 3em; /* Adjust the value as needed to make it bigger */
+}
+
+#player {
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: translate(-50%, -50%); /* Center the player exactly */
+}
+
+
+.control-keys {
+    margin-top: 20px;
+}
+
+.control-keys button {
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+/* CSS styling for bullets */
+.bullet {
+    position: absolute;
+    width: 10px; /* Adjust bullet width as needed */
+    height: 5px; /* Adjust bullet height as needed */
+    background-color: red; /* Adjust bullet color as needed */
+}
+
+/* CSS styling for enemies */
+.enemy {
+    position: absolute;
+    background-color: green; /* Adjust enemy color as needed */
+}
+
+/* CSS styling for money earned */
+#money {
+    position: absolute;
+    top: 20px; /* Adjust money display position as needed */
+    right: 20px; /* Adjust money display position as needed */
+    font-size: 20px; /* Adjust money display font size as needed */
+    color: gold; /* Adjust money display color as needed */
+}
+
+/* CSS styling to align bullets in a straight line */
+.straight-line {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
