@@ -1,0 +1,14 @@
+{
+  "name": "Reyn's Website",
+  "short_name": "Reyn's",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "icons": [
+    {
+      "src": "https://rcb0.github.io/logo/reyn.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ]
+}
