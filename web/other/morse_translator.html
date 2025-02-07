@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Morse Code Translator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        textarea {
+            width: 80%;
+            height: 100px;
+            margin: 10px 0;
+        }
+        button {
+            padding: 10px;
+            margin: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Morse Code Translator</h1>
+    <textarea id="inputText" placeholder="Enter text or Morse code..."></textarea>
+    <br>
+    <button onclick="translateToMorse()">Translate to Morse</button>
+    <button onclick="translateToText()">Translate to Text</button>
+    <br>
+    <textarea id="outputText" readonly></textarea>
+    
+    <script>
+        const morseCodeMap = {
+            'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..', 'E': '.', 'F': '..-.', 'G': '--.', 'H': '....', 'I': '..', 'J': '.---',
+            'K': '-.-', 'L': '.-..', 'M': '--', 'N': '-.', 'O': '---', 'P': '.--.', 'Q': '--.-', 'R': '.-.', 'S': '...', 'T': '-',
+            'U': '..-', 'V': '...-', 'W': '.--', 'X': '-..-', 'Y': '-.--', 'Z': '--..',
+            '0': '-----', '1': '.----', '2': '..---', '3': '...--', '4': '....-', '5': '.....', '6': '-....', '7': '--...', '8': '---..', '9': '----.',
+            ' ': ' / ', '3': 'my love is...', '4': 'Hello my friend'
+        };
+        const reverseMorseCodeMap = Object.fromEntries(Object.entries(morseCodeMap).map(([k, v]) => [v, k]));
+        
+        function translateToMorse() {
+            const text = document.getElementById('inputText').value.toUpperCase();
+            const morse = text.split('').map(char => morseCodeMap[char] || '').join(' ');
+            document.getElementById('outputText').value = morse;
+        }
+        
+        function translateToText() {
+            const morse = document.getElementById('inputText').value.trim();
+            const text = morse.split(' ').map(code => reverseMorseCodeMap[code] || ' ').join('');
+            document.getElementById('outputText').value = text;
+        }
+    </script>
+</body>
+</html>
